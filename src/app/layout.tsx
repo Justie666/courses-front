@@ -23,9 +23,7 @@ export default function RootLayout({
 			<body className={`${inter.className}`}>
 				<Providers>
 					<div className='flex min-h-screen flex-col justify-between gap-[20px] sm:gap-[40px]'>
-						<div className='flex-shrink-0'>
-							<NavBar />
-						</div>
+						<NavBar />
 						<main className='container flex-grow'>{children}</main>
 						<footer>dsadas</footer>
 					</div>

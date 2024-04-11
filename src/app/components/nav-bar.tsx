@@ -20,7 +20,7 @@ export const NavBar = () => {
 	console.log(user)
 
 	return (
-		<nav className='sticky top-0 z-50 border-b border-slate-200 bg-white/70 py-3 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/80'>
+		<nav className='sticky top-0 z-50 border-b border-slate-200 bg-white/70 py-3 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80'>
 			<div className='container flex items-center justify-between'>
 				<Link href={ROUTES.main}>
 					Logo
