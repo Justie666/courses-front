@@ -9,5 +9,9 @@ export const RULES = {
 	name: {
 		minLength: 2,
 		minLengthError: 'Имя должно содержать больше 2 символов'
+	},
+	titleCategory: {
+		min: 2,
+		minError: 'Название категории должно содержать больше 2 символов'
 	}
 }

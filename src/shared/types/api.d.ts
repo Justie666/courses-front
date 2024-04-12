@@ -23,3 +23,8 @@ interface UserSignUpFields {
 	name: string
 	password: string
 }
+
+interface Category {
+	id: string
+	title: string
+}
