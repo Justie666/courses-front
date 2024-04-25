@@ -8,7 +8,7 @@ import {
 	DialogTrigger
 } from '@/shared/ui'
 
-import { CreateCourseForm } from './create-course-form'
+import { FormCreateCourse } from './form-create-course'
 
 interface DialogCreateCourseProps {
 	className?: string
@@ -17,18 +17,16 @@ interface DialogCreateCourseProps {
 export const DialogCreateCourse = ({ className }: DialogCreateCourseProps) => {
 	return (
 		<Dialog>
-			<DialogTrigger className={cn('mt-5', className)}>
+			<DialogTrigger asChild className={cn('mt-5', className)}>
 				<Button variant='outline' size='sm'>
-					Создать
+					Добавить
 				</Button>
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Добавить новый курс</DialogTitle>
 				</DialogHeader>
-				<div>
-					<CreateCourseForm />
-				</div>
+				<FormCreateCourse />
 			</DialogContent>
 		</Dialog>
 	)

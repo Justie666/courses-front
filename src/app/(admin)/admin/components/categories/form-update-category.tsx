@@ -24,11 +24,11 @@ const formSchema = z.object({
 	})
 })
 
-interface UpdateCategoryFormProps {
+interface FormUpdateCategoryProps {
 	category: Category
 }
 
-export const UpdateCategoryForm = ({ category }: UpdateCategoryFormProps) => {
+export const FormUpdateCategory = ({ category }: FormUpdateCategoryProps) => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -36,10 +36,10 @@ export const UpdateCategoryForm = ({ category }: UpdateCategoryFormProps) => {
 		}
 	})
 
-	const { mutate, isPending } = useUpdateCategoryMutation({})
+	const { mutate: updateCategory, isPending } = useUpdateCategoryMutation({})
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
-		mutate({ params: { id: category.id, ...values } })
+		updateCategory({ params: { id: category.id, ...values } })
 	}
 
 	return (
@@ -60,7 +60,7 @@ export const UpdateCategoryForm = ({ category }: UpdateCategoryFormProps) => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit' className='mt-4 w-full' disabled={isPending}>
+				<Button type='submit' className='mt-4' disabled={isPending}>
 					{isPending && <Loader2 className='mr-2 animate-spin' />}
 					Добавить
 				</Button>

@@ -1,7 +1,11 @@
+'use client'
+
 import { CoursesList } from '@/components'
+import { useGetCurrentUserQuery } from '@/shared/api'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui'
 
 const FavoritesPage = () => {
+	const { data: user } = useGetCurrentUserQuery()
 	return (
 		<div>
 			<Tabs defaultValue='courses'>
@@ -14,7 +18,7 @@ const FavoritesPage = () => {
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent value='courses'>
-					<CoursesList />
+					{/* <CoursesList courses={user?.userFavoriteCourse} /> */}
 				</TabsContent>
 				<TabsContent value='password'>Change your password here.</TabsContent>
 			</Tabs>

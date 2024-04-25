@@ -6,6 +6,15 @@ interface User {
 	name: string
 	role: string
 	password: string
+	userFavoriteCourse: UserFavoriteCourse[]
+}
+
+interface UserFavoriteCourse {
+	id: string
+	createdAt: string
+	updatedAt: string
+	userId: string
+	courseId: string
 }
 
 interface UserResponse {
@@ -26,5 +35,19 @@ interface UserSignUpFields {
 
 interface Category {
 	id: string
+	createdAt: string
+	updatedAt: string
 	title: string
+}
+
+interface Course {
+	id: string
+	createdAt: string
+	updatedAt: string
+	title: string
+	price: number
+	slug: string
+	image: string
+	ratingCourse: any[]
+	categories: Category[]
 }

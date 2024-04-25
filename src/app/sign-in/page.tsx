@@ -37,7 +37,7 @@ export default function SignInPage() {
 						<CardHeader>
 							<CardTitle>Регистрация</CardTitle>
 							<CardDescription>
-								Change your password here. After saving, youll be logged out.
+								Введи все данные чтобы зарегистрироваться
 							</CardDescription>
 						</CardHeader>
 						<CardContent className='space-y-2'>

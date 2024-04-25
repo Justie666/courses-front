@@ -4,6 +4,7 @@ import { Pencil } from 'lucide-react'
 
 import { cn } from '@/shared/lib/utils'
 import {
+	Button,
 	Dialog,
 	DialogContent,
 	DialogHeader,
@@ -11,7 +12,7 @@ import {
 	DialogTrigger
 } from '@/shared/ui'
 
-import { UpdateCategoryForm } from './update-category-form'
+import { FormUpdateCategory } from './form-update-category'
 
 interface DialogUpdateCategoryProps {
 	className?: string
@@ -24,15 +25,17 @@ export const DialogUpdateCategory = ({
 }: DialogUpdateCategoryProps) => {
 	return (
 		<Dialog>
-			<DialogTrigger className={cn('', className)}>
-				<Pencil size={18} className='cursor-pointer hover:scale-110' />
+			<DialogTrigger asChild className={cn('', className)}>
+				<Button size='icon' variant='outline'>
+					<Pencil size={18} />
+				</Button>
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Изменить категорию</DialogTitle>
 				</DialogHeader>
 				<div>
-					<UpdateCategoryForm category={category} />
+					<FormUpdateCategory category={category} />
 				</div>
 			</DialogContent>
 		</Dialog>

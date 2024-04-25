@@ -21,7 +21,6 @@ export const useCreateCategoryMutation = (
 		...settings?.options,
 		onSuccess: response => {
 			queryClient.invalidateQueries({ queryKey: ['categories'] })
-			queryClient.refetchQueries({ queryKey: ['categories'] })
 			toast('Категория была добавлена')
 		},
 		onError(error) {

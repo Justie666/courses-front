@@ -3,6 +3,7 @@
 import { Trash2 } from 'lucide-react'
 
 import { useDeleteCategoryMutation } from '@/shared/api'
+import { Button } from '@/shared/ui'
 
 import { DialogUpdateCategory } from './dialog-update-category'
 
@@ -20,13 +21,11 @@ export const CategoryItem = ({ category }: CategoryItemProps) => {
 	return (
 		<div className='text-md flex items-center gap-2 rounded-2xl border px-3 py-2'>
 			{category.title}
-			<div className='flex gap-1'>
+			<div className='flex gap-2'>
 				<DialogUpdateCategory category={category} />
-				<Trash2
-					onClick={handleDeleteCategory}
-					size={18}
-					className='cursor-pointer hover:scale-110'
-				/>
+				<Button onClick={handleDeleteCategory} size='icon' variant='outline'>
+					<Trash2 size={18} />
+				</Button>
 			</div>
 		</div>
 	)

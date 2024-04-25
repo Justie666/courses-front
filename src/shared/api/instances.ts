@@ -3,11 +3,12 @@ import axios from 'axios'
 
 import { getAccessToken, removeAccessToken } from '@/shared/services'
 
+import { env } from '../constants'
 import { errorCatch } from './error'
 import { AuthService } from './services'
 
 const options: CreateAxiosDefaults = {
-	baseURL: 'http://localhost:4200/api',
+	baseURL: env.API_URL,
 	headers: {
 		'Content-Type': 'application/json'
 	},

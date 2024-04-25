@@ -10,7 +10,7 @@ import {
 	DialogTrigger
 } from '@/shared/ui'
 
-import { CreateCategoryForm } from './create-category-form'
+import { FormCreateCourse } from './form-create-category'
 
 interface DialogCreateCategoryProps {
 	className?: string
@@ -31,7 +31,7 @@ export const DialogCreateCategory = ({
 					<DialogTitle>Добавить новую категорию</DialogTitle>
 				</DialogHeader>
 				<div>
-					<CreateCategoryForm />
+					<FormCreateCourse />
 				</div>
 			</DialogContent>
 		</Dialog>

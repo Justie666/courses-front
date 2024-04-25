@@ -22,7 +22,6 @@ export const usePostLogoutMutation = (
 			removeAccessToken()
 			toast('Вы вышли из аккаунта')
 			queryClient.invalidateQueries({ queryKey: ['user'] })
-			queryClient.refetchQueries({ queryKey: ['user'] })
 		},
 		onError(error) {
 			toast(error?.response?.data?.message || 'Упс, что-то пошло не так')

@@ -21,7 +21,7 @@ export const useDeleteCategoryMutation = (
 		...settings?.options,
 		onSuccess: response => {
 			queryClient.invalidateQueries({ queryKey: ['categories'] })
-			queryClient.refetchQueries({ queryKey: ['categories'] })
+			queryClient.invalidateQueries({ queryKey: ['courses'] })
 			toast('Категория была удалена')
 		},
 		onError(error) {

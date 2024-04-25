@@ -1,6 +1,6 @@
 import { saveAccessToken } from '@/shared/services'
 
-import { api } from '../instances'
+import { api, apiWithAuth } from '../instances'
 
 const PREFIX = '/auth'
 
@@ -27,7 +27,7 @@ export const AuthService = {
 		api.post<UserResponse>(`${PREFIX}/sign-up`, params, config),
 
 	logout: async ({ params, config }: LogoutConfig) =>
-		api.post<UserResponse>(`${PREFIX}/logout`, params, config),
+		apiWithAuth.post<UserResponse>(`${PREFIX}/logout`, params, config),
 
 	accessToken: async ({ params, config }: AccessTokenConfig) => {
 		const response = await api.post<UserResponse>(

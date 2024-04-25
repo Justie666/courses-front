@@ -25,7 +25,7 @@ export const useUpdateCategoryMutation = (
 		...settings?.options,
 		onSuccess: response => {
 			queryClient.invalidateQueries({ queryKey: ['categories'] })
-			queryClient.refetchQueries({ queryKey: ['categories'] })
+			queryClient.invalidateQueries({ queryKey: ['courses'] })
 			toast('Категория была изменена')
 		},
 		onError(error) {

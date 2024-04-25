@@ -24,7 +24,7 @@ const formSchema = z.object({
 	})
 })
 
-export const CreateCategoryForm = () => {
+export const FormCreateCourse = () => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -32,10 +32,10 @@ export const CreateCategoryForm = () => {
 		}
 	})
 
-	const { mutate, isPending } = useCreateCategoryMutation({})
+	const { mutate: createCategory, isPending } = useCreateCategoryMutation()
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
-		mutate({ params: values })
+		createCategory({ params: values })
 	}
 
 	return (
@@ -56,7 +56,7 @@ export const CreateCategoryForm = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit' className='mt-4 w-full' disabled={isPending}>
+				<Button type='submit' className='mt-4' disabled={isPending}>
 					{isPending && <Loader2 className='mr-2 animate-spin' />}
 					Добавить
 				</Button>

@@ -3,8 +3,10 @@ import '@/root/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import { ScrollToTop } from '@/components'
+
 import { Providers } from '../root/providers'
-import { NavBar } from './components'
+import { Footer, NavBar } from './components'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,8 +27,10 @@ export default function RootLayout({
 					<div className='flex min-h-screen flex-col justify-between gap-[20px] sm:gap-[40px]'>
 						<NavBar />
 						<main className='container flex-grow'>{children}</main>
-						<footer>dsadas</footer>
+						<Footer />
 					</div>
+					<div className='shadow' />
+					<ScrollToTop />
 				</Providers>
 			</body>
 		</html>
