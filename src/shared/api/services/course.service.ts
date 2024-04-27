@@ -5,6 +5,10 @@ const PREFIX = '/course'
 export type GetAllConfig = RequestConfig<{}>
 export type CourseCreateConfig = RequestConfig<{ title: string }>
 export type CourseUpdateConfig = RequestConfig<{ id: string; title: string }>
+export type CourseUpdateImageConfig = RequestConfig<{
+	id: string
+	image: File
+}>
 export type CourseDeleteConfig = RequestConfig<{ id: string }>
 
 export const CourseService = {
@@ -16,6 +20,13 @@ export const CourseService = {
 
 	update: async ({ params, config }: CourseUpdateConfig) =>
 		apiWithAuth.patch<Course>(`${PREFIX}/${params?.id}`, params, config),
+
+	updateImage: async ({ params, config }: CourseUpdateImageConfig) =>
+		apiWithAuth.patch<string>(
+			`${PREFIX}/update-image/${params?.id}`,
+			params,
+			config
+		),
 
 	delete: async ({ params, config }: CourseDeleteConfig) =>
 		apiWithAuth.delete<Course>(`${PREFIX}/${params?.id}`, config)

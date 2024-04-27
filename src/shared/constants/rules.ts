@@ -26,5 +26,13 @@ export const RULES = {
 				message: 'Вы должны выбрать хотя бы одну категорию'
 			}
 		}
+	},
+	backCall: {
+		phone: {
+			regex: {
+				rule: '',
+				message: 'Неверный формат телефона'
+			}
+		}
 	}
 }

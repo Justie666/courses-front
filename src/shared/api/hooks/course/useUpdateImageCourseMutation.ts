@@ -1,26 +1,29 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { ToggleUserFavoriteCourseConfig, UserService } from '../../services'
+import {
+	CourseService,
+	CourseUpdateImageConfig
+} from '../../services/course.service'
 
-export const useToggleUserFavoriteCourseMutation = (
+export const useUpdateImageCourseMutation = (
 	settings?: MutationSettings<
-		ToggleUserFavoriteCourseConfig,
-		typeof UserService.toggleFavoriteCourse
+		CourseUpdateImageConfig,
+		typeof CourseService.updateImage
 	>
 ) => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['toggle-course', settings?.config?.params.courseId],
+		mutationKey: ['update-course-image'],
 		mutationFn: ({ params, config }) =>
-			UserService.toggleFavoriteCourse({
+			CourseService.updateImage({
 				params: params,
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
 		onSuccess: response => {
-			queryClient.invalidateQueries({ queryKey: ['user'] })
+			queryClient.invalidateQueries({ queryKey: ['courses'] })
 			toast(response.data)
 		},
 		onError(error) {

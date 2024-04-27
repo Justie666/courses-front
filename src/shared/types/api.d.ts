@@ -1,15 +1,29 @@
+enum Role {
+	USER,
+	ADMIN
+}
+
 interface User {
 	id: string
 	createdAt: string
 	updatedAt: string
 	email: string
 	name: string
-	role: string
+	role: Role
 	password: string
 	userFavoriteCourse: UserFavoriteCourse[]
+	userPurchasedCourse: UserPurchasedCourse[]
 }
 
 interface UserFavoriteCourse {
+	id: string
+	createdAt: string
+	updatedAt: string
+	userId: string
+	courseId: string
+}
+
+interface UserPurchasedCourse {
 	id: string
 	createdAt: string
 	updatedAt: string
@@ -50,4 +64,17 @@ interface Course {
 	image: string
 	ratingCourse: any[]
 	categories: Category[]
+}
+
+type StatusRequestBackCall = 'PENDING' | 'ACCEPT' | 'REJECT'
+
+interface RequestBackCall {
+	id: string
+	createdAt: string
+	updatedAt: string
+	status: StatusRequestBackCall
+	comment: string
+	phone: string
+	userId: string
+	user: User
 }

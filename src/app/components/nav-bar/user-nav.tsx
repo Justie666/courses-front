@@ -37,17 +37,27 @@ export const UserNav = () => {
 				<DropdownMenuLabel>
 					<Link href={ROUTES.profile}>Мой аккаунт</Link>
 				</DropdownMenuLabel>
+
 				<DropdownMenuSeparator />
+
 				<DropdownMenuItem>
 					<Link href={ROUTES.favorites}>Избранное</Link>
 				</DropdownMenuItem>
 				<DropdownMenuItem>
 					<Link href={ROUTES.applications}>Мои заявки</Link>
 				</DropdownMenuItem>
+
+				<DropdownMenuSeparator />
+
 				<DropdownMenuItem>
 					<Link href={ROUTES.admin}>Админка</Link>
 				</DropdownMenuItem>
+				<DropdownMenuItem>
+					<Link href={ROUTES['admin-requests']}>Заявки</Link>
+				</DropdownMenuItem>
+
 				<DropdownMenuSeparator />
+
 				<DropdownMenuItem onClick={handleClickLogout}>Выход</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

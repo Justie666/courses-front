@@ -38,7 +38,6 @@ const AdminPage = () => {
 					className='mt-3'
 				/>
 			</TabsContent>
-			<TabsContent value='password'>Change your password here.</TabsContent>
 		</Tabs>
 	)
 }

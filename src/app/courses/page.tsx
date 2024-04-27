@@ -9,7 +9,7 @@ import { Button } from '@/shared/ui'
 
 const CoursesPage = () => {
 	const [selectedCategory, setSelectedCategory] = useState('all')
-	const { data: courses } = useGetAllCourseQuery()
+	const { data: courses, isPending: isPendingCourses } = useGetAllCourseQuery()
 	const { data: categories } = useGetAllCategoriesQuery()
 
 	const handleCategorySelection = (categoryId: string) => {
@@ -54,7 +54,7 @@ const CoursesPage = () => {
 					</Button>
 				))}
 			</div>
-			<CoursesList courses={filteredCourses} />
+			<CoursesList courses={filteredCourses} isPending={isPendingCourses} />
 		</div>
 	)
 }

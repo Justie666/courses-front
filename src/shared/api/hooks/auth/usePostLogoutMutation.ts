@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { removeAccessToken } from '@/shared/services'
 
-import { AuthService, LogoutConfig } from '../services'
+import { AuthService, LogoutConfig } from '../../services'
 
 export const usePostLogoutMutation = (
 	settings?: MutationSettings<LogoutConfig, typeof AuthService.logout>

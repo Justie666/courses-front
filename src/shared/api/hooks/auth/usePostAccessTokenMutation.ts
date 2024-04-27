@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 
 import { removeAccessToken, saveAccessToken } from '@/shared/services'
 
-import { AccessTokenConfig, AuthService } from '../services'
+import { AccessTokenConfig, AuthService } from '../../services'
 
 export const usePostAccessTokenMutation = (
 	settings?: MutationSettings<AccessTokenConfig, typeof AuthService.accessToken>

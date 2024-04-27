@@ -1,15 +1,13 @@
-import { Heart, Pencil, Star, Trash2 } from 'lucide-react'
+import { Heart, Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
-import { DialogUpdateCourse } from '@/app/(admin)/admin/components/courses/dialog-update-course'
 import {
-	useDeleteCourseMutation,
 	useGetCurrentUserQuery,
-	useToggleUserFavoriteCourseMutation
+	useToggleUserFavoriteCourseMutation,
+	useUserBuyCourseQuery
 } from '@/shared/api'
-import { env, ROUTES } from '@/shared/constants'
+import { env } from '@/shared/constants'
 import { cn } from '@/shared/lib/utils'
 import {
 	Badge,
@@ -21,20 +19,20 @@ import {
 	CardTitle
 } from '@/shared/ui'
 
+import { AdminFeaturesCourses } from './features'
+
 interface CourseCardProps {
 	course: Course
 }
 
 export const CourseCard = ({ course }: CourseCardProps) => {
-	const pathname = usePathname()
-	const isAdminPage = pathname.includes('admin')
 	const { data: user } = useGetCurrentUserQuery()
-	const { mutate: deleteCourse } = useDeleteCourseMutation()
+	const { mutate: buyCourse } = useUserBuyCourseQuery()
 	const { mutate: toggleUserFavoriteCourse } =
 		useToggleUserFavoriteCourseMutation()
 
-	const handleDeleteCourse = () => {
-		deleteCourse({ params: { id: course.id } })
+	const handleBuyCourse = () => {
+		buyCourse({ params: { courseId: course.id } })
 	}
 
 	const handleToggleUserFavoriteCourse = () => {
@@ -44,17 +42,15 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 	const isFavoriteCourse = () =>
 		user?.userFavoriteCourse.some(favorite => favorite.courseId === course.id)
 
+	const isPurchasedCourse = () =>
+		user?.userPurchasedCourse.some(
+			purchasedCourse => purchasedCourse.courseId === course.id
+		)
+
 	return (
 		<Card className='group flex flex-col'>
 			<CardHeader className='relative overflow-hidden p-0'>
-				{isAdminPage && (
-					<div className='absolute right-3 top-3 z-40 mt-3 flex gap-2'>
-						<DialogUpdateCourse course={course} />
-						<Button onClick={handleDeleteCourse} size='icon' variant='outline'>
-							<Trash2 />
-						</Button>
-					</div>
-				)}
+				<AdminFeaturesCourses course={course} />
 				<div className='h-[200px]'>
 					<Image
 						src={`${env.API_URL}/${course.image}`}
@@ -88,9 +84,21 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 						{isFavoriteCourse() && <Heart fill='gray' stroke='gray' />}
 						{!isFavoriteCourse() && <Heart />}
 					</Button>
-					<Button asChild variant='outline'>
+					<div>
+						{isPurchasedCourse() && (
+							<Button asChild variant='outline'>
+								<Link href='#'>Смотреть</Link>
+							</Button>
+						)}
+						{!isPurchasedCourse() && (
+							<Button onClick={handleBuyCourse} variant='outline'>
+								Купить
+							</Button>
+						)}
+					</div>
+					{/* <Button asChild variant='outline'>
 						<Link href={`${ROUTES.courses}/${course.slug}}`}>Подробнее</Link>
-					</Button>
+					</Button> */}
 				</div>
 			</CardFooter>
 		</Card>

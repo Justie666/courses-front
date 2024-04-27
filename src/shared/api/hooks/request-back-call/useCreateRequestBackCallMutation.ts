@@ -1,27 +1,30 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { ToggleUserFavoriteCourseConfig, UserService } from '../../services'
+import {
+	CreateRequestBackCallConfig,
+	RequestBackCallService
+} from '../../services/request-back-call.service'
 
-export const useToggleUserFavoriteCourseMutation = (
+export const useCreateRequestBackCallMutation = (
 	settings?: MutationSettings<
-		ToggleUserFavoriteCourseConfig,
-		typeof UserService.toggleFavoriteCourse
+		CreateRequestBackCallConfig,
+		typeof RequestBackCallService.create
 	>
 ) => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['toggle-course', settings?.config?.params.courseId],
+		mutationKey: ['create-request'],
 		mutationFn: ({ params, config }) =>
-			UserService.toggleFavoriteCourse({
+			RequestBackCallService.create({
 				params: params,
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
 		onSuccess: response => {
-			queryClient.invalidateQueries({ queryKey: ['user'] })
-			toast(response.data)
+			queryClient.invalidateQueries({ queryKey: ['requests'] })
+			toast('Заявка была отправлена')
 		},
 		onError(error) {
 			toast(error?.response?.data?.message || 'Упс, что-то пошло не так')

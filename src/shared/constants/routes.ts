@@ -5,6 +5,7 @@ export const ROUTES = {
 	courses: '/courses',
 	internship: '/internship',
 	admin: '/admin',
+	'admin-requests': '/admin/requests',
 	favorites: '/favorites',
 	profile: '/profile',
 	applications: '/applications'

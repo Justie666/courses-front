@@ -1,4 +1,6 @@
-import { About, FAQ, Welcome } from './components'
+import { Video } from '@/components'
+
+import { About, BackCall, FAQ, Welcome } from './components'
 
 export default function Home() {
 	return (
@@ -6,6 +8,7 @@ export default function Home() {
 			<Welcome />
 			<About />
 			<FAQ />
+			<BackCall />
 		</>
 	)
 }

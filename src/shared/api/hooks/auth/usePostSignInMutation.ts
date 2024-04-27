@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 import { ROUTES } from '@/shared/constants'
 import { saveAccessToken } from '@/shared/services'
 
-import { AuthService, SignInConfig } from '../services'
+import { AuthService, SignInConfig } from '../../services'
 
 export const usePostSignInMutation = (
 	settings?: MutationSettings<SignInConfig, typeof AuthService.signIn>
