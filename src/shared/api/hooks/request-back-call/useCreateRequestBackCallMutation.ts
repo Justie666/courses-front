@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 import {
 	CreateRequestBackCallConfig,
 	RequestBackCallService
-} from '../../services/request-back-call.service'
+} from '../../services'
 
 export const useCreateRequestBackCallMutation = (
 	settings?: MutationSettings<

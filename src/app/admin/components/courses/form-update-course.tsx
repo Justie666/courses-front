@@ -42,7 +42,7 @@ export const FormUpdateCourse = ({ course }: FormUpdateCourseProps) => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			title: course.title,
-			categoryIds: course.categories.map(category => category.id),
+			categoryIds: course.categories?.map(category => category.id),
 			price: course.price
 		}
 	})

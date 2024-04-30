@@ -1,10 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import {
-	CourseService,
-	CourseUpdateConfig
-} from '../../services/course.service'
+import { CourseService, CourseUpdateConfig } from '../../services'
 
 export const useUpdateCourseMutation = (
 	settings?: MutationSettings<CourseUpdateConfig, typeof CourseService.update>

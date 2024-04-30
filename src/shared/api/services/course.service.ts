@@ -2,7 +2,10 @@ import { api, apiWithAuth } from '../instances'
 
 const PREFIX = '/course'
 
-export type GetAllConfig = RequestConfig<{}>
+export type CourseGetAllConfig = RequestConfig<{}>
+export type CourseGetBySlugConfig = RequestConfig<{
+	slug: string
+}>
 export type CourseCreateConfig = RequestConfig<{ title: string }>
 export type CourseUpdateConfig = RequestConfig<{ id: string; title: string }>
 export type CourseUpdateImageConfig = RequestConfig<{
@@ -12,8 +15,11 @@ export type CourseUpdateImageConfig = RequestConfig<{
 export type CourseDeleteConfig = RequestConfig<{ id: string }>
 
 export const CourseService = {
-	getAll: async ({ config }: GetAllConfig) =>
+	getAll: async ({ config }: CourseGetAllConfig) =>
 		api.get<Course[]>(`${PREFIX}`, config).then(res => res.data),
+
+	getBySlug: async ({ config }: CourseGetBySlugConfig) =>
+		api.get<Course>(`${PREFIX}/one`, config).then(res => res.data),
 
 	create: async ({ params, config }: CourseCreateConfig) =>
 		apiWithAuth.post<Course>(`${PREFIX}`, params, config),

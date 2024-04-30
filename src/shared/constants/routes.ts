@@ -8,5 +8,6 @@ export const ROUTES = {
 	'admin-requests': '/admin/requests',
 	favorites: '/favorites',
 	profile: '/profile',
-	applications: '/applications'
+	applications: '/applications',
+	'courses-watch': '/courses/watch'
 }

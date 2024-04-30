@@ -1,3 +1,5 @@
+'use client'
+
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
@@ -21,7 +23,6 @@ export const usePostSignUpMutation = (
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
-		// TODO логика сохранения токена
 		onSuccess: response => {
 			saveAccessToken(response.data.accessToken)
 			router.push(ROUTES.main)

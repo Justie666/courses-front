@@ -1,5 +1,6 @@
 export * from './useCreateCourseMutation.ts'
 export * from './useDeleteCourseMutation.ts'
 export * from './useGetAllCourseQuery.ts'
+export * from './useGetBySlugCourseQuery.ts'
 export * from './useUpdateCourseMutation.ts'
 export * from './useUpdateImageCourseMutation.ts'

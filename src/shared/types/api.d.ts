@@ -1,7 +1,4 @@
-enum Role {
-	USER,
-	ADMIN
-}
+type Role = 'USER' | 'ADMIN'
 
 interface User {
 	id: string
@@ -62,8 +59,19 @@ interface Course {
 	price: number
 	slug: string
 	image: string
-	ratingCourse: any[]
-	categories: Category[]
+	ratingCourse?: any[]
+	categories?: Category[]
+	lessons?: Lesson[]
+}
+
+interface Lesson {
+	id: string
+	createdAt: string
+	updatedAt: string
+	courseId: string
+	slug: string
+	title: string
+	video: string
 }
 
 type StatusRequestBackCall = 'PENDING' | 'ACCEPT' | 'REJECT'

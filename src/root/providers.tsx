@@ -27,7 +27,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
 			disableTransitionOnChange>
 			<QueryClientProvider client={queryClient}>
 				{children}
-				{/* <ReactQueryDevtools initialIsOpen={false} /> */}
+				<ReactQueryDevtools initialIsOpen={false} />
 				<Toaster />
 			</QueryClientProvider>
 		</ThemeProvider>

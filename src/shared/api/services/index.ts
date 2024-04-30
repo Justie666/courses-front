@@ -1,3 +1,6 @@
 export * from './auth.service.ts'
 export * from './category.service.ts'
+export * from './course.service.ts'
+export * from './lesson.service.ts'
+export * from './request-back-call.service.ts'
 export * from './user.service.ts'

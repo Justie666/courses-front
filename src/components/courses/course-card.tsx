@@ -7,7 +7,7 @@ import {
 	useToggleUserFavoriteCourseMutation,
 	useUserBuyCourseQuery
 } from '@/shared/api'
-import { env } from '@/shared/constants'
+import { env, ROUTES } from '@/shared/constants'
 import { cn } from '@/shared/lib/utils'
 import {
 	Badge,
@@ -66,7 +66,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 					<Star fill='yellow' strokeWidth={0} /> 5.0
 				</p>
 				<div className='mt-4 flex flex-wrap gap-2'>
-					{course.categories.map(category => (
+					{course.categories?.map(category => (
 						<Badge key={category.id} variant='outline'>
 							{category.title}
 						</Badge>
@@ -87,7 +87,9 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 					<div>
 						{isPurchasedCourse() && (
 							<Button asChild variant='outline'>
-								<Link href='#'>Смотреть</Link>
+								<Link href={`${ROUTES['courses-watch']}/${course.slug}`}>
+									Смотреть
+								</Link>
 							</Button>
 						)}
 						{!isPurchasedCourse() && (

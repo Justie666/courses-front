@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { CourseService } from '../../services/course.service'
+import { CourseService } from '../../services'
 
 export const useGetAllCourseQuery = (
 	settings?: QuerySettings<typeof CourseService.getAll>

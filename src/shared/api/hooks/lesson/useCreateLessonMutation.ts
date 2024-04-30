@@ -1,24 +1,26 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { CourseDeleteConfig, CourseService } from '../../services'
+import { LessonCreateConfig, LessonService } from '../../services'
 
-export const useDeleteCourseMutation = (
-	settings?: MutationSettings<CourseDeleteConfig, typeof CourseService.delete>
+export const useCreateLessonMutation = (
+	settings?: MutationSettings<LessonCreateConfig, typeof LessonService.create>
 ) => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['delete-course'],
+		mutationKey: ['create-lesson'],
 		mutationFn: ({ params, config }) =>
-			CourseService.delete({
+			LessonService.create({
 				params: params,
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
 		onSuccess: response => {
-			queryClient.invalidateQueries({ queryKey: ['courses'] })
-			toast('Курс был удален')
+			queryClient.invalidateQueries({
+				queryKey: ['course', response.data.courseSlug]
+			})
+			toast(response.data.message)
 		},
 		onError(error) {
 			toast(error?.response?.data?.message || 'Упс, что-то пошло не так')
