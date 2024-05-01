@@ -20,7 +20,7 @@ const CoursesPage = () => {
 		if (selectedCategory === 'all') {
 			return true
 		}
-		return course.categories.some(category => category.id === selectedCategory) // Filter by category
+		return course.categories?.some(category => category.id === selectedCategory) // Filter by category
 	})
 
 	return (

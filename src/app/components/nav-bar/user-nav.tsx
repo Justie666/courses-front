@@ -18,7 +18,7 @@ import {
 
 export const UserNav = () => {
 	const { data: user } = useGetCurrentUserQuery()
-
+	console.log(user)
 	const { mutate } = usePostLogoutMutation()
 
 	const handleClickLogout = () => {

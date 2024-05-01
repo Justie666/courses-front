@@ -8,6 +8,10 @@ export type ToggleUserFavoriteCourseConfig = RequestConfig<{
 	courseId: string
 }>
 
+export type ToggleWatchedLessonConfig = RequestConfig<{
+	lessonId: string
+}>
+
 export type BuyCourseConfig = RequestConfig<{
 	courseId: string
 }>
@@ -29,5 +33,12 @@ export const UserService = {
 		),
 
 	buyCourse: async ({ params, config }: BuyCourseConfig) =>
-		apiWithAuth.post<string>(`${PREFIX}/buy-course`, params, config)
+		apiWithAuth.post<string>(`${PREFIX}/buy-course`, params, config),
+
+	toggleWatchedLesson: async ({ params, config }: ToggleWatchedLessonConfig) =>
+		apiWithAuth.post<{ courseSlug: string; message: string }>(
+			`${PREFIX}/toggle-watched-lesson`,
+			params,
+			config
+		)
 }

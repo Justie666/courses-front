@@ -1,27 +1,29 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { ToggleUserFavoriteCourseConfig, UserService } from '../../services'
+import { ToggleWatchedLessonConfig, UserService } from '../../services'
 
-export const useToggleUserFavoriteCourseMutation = (
+export const useUserToggleWatchedLessonMutation = (
 	settings?: MutationSettings<
-		ToggleUserFavoriteCourseConfig,
-		typeof UserService.toggleFavoriteCourse
+		ToggleWatchedLessonConfig,
+		typeof UserService.toggleWatchedLesson
 	>
 ) => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['toggle-course', settings?.config?.params.courseId],
+		mutationKey: ['toggle-watched-lesson', settings?.config?.params.lessonId],
 		mutationFn: ({ params, config }) =>
-			UserService.toggleFavoriteCourse({
+			UserService.toggleWatchedLesson({
 				params: params,
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
 		onSuccess: response => {
-			queryClient.invalidateQueries({ queryKey: ['user'] })
-			toast(response.data)
+			queryClient.invalidateQueries({
+				queryKey: ['user']
+			})
+			toast(response.data.message)
 		},
 		onError(error) {
 			toast(error?.response?.data?.message || 'Упс, что-то пошло не так')

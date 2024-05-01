@@ -4,10 +4,10 @@ import { CheckCheck } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { Video } from '@/components'
-import { useGetBySlugCourseQuery } from '@/shared/api'
+import { useGetBySlugCourseQuery, useGetCurrentUserQuery } from '@/shared/api'
 import { Button } from '@/shared/ui'
 
-import { LessonsList } from './components'
+import { LessonsList, ToggleWatchedLesson } from './components'
 
 interface CoursesWatchSlugPageProps {
 	params: {
@@ -17,6 +17,7 @@ interface CoursesWatchSlugPageProps {
 
 const CoursesWatchSlugPage = ({ params }: CoursesWatchSlugPageProps) => {
 	const [selectedLesson, setSelectedLesson] = useState<string | null>(null)
+
 	const { data: course } = useGetBySlugCourseQuery({
 		config: {
 			params: { slug: params.slug }
@@ -38,9 +39,7 @@ const CoursesWatchSlugPage = ({ params }: CoursesWatchSlugPageProps) => {
 				{selectedLesson && (
 					<div className='space-y-2'>
 						<Video width='100%' className='flex-grow' />
-						<Button variant='outline'>
-							Отметить выполненным <CheckCheck className='ml-2' />
-						</Button>
+						<ToggleWatchedLesson lessonId={selectedLesson} />
 					</div>
 				)}
 				<div className='flex-grow space-y-2'>

@@ -8,8 +8,9 @@ interface User {
 	name: string
 	role: Role
 	password: string
-	userFavoriteCourse: UserFavoriteCourse[]
-	userPurchasedCourse: UserPurchasedCourse[]
+	userFavoriteCourse?: UserFavoriteCourse[]
+	userPurchasedCourse?: UserPurchasedCourse[]
+	userWatchedLesson?: UserWatchedLesson[]
 }
 
 interface UserFavoriteCourse {
@@ -26,6 +27,14 @@ interface UserPurchasedCourse {
 	updatedAt: string
 	userId: string
 	courseId: string
+}
+
+interface UserWatchedLesson {
+	id: string
+	createdAt: string
+	updatedAt: string
+	userId: string
+	lessonId: string
 }
 
 interface UserResponse {
