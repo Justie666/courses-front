@@ -13,28 +13,39 @@ export type LessonUpdateConfig = RequestConfig<{
 	courseId: string
 }>
 
+export type LessonUpdateVideoConfig = RequestConfig<{
+	id: string
+	video: File
+}>
+
 export type LessonDeleteConfig = RequestConfig<{
 	id: string
 }>
 
+interface LessonRequest {
+	courseSlug: string
+	message: string
+}
+
 export const LessonService = {
 	create: async ({ params, config }: LessonCreateConfig) =>
-		apiWithAuth.post<{ courseSlug: string; message: string }>(
-			`${PREFIX}`,
-			params,
-			config
-		),
+		apiWithAuth.post<LessonRequest>(`${PREFIX}`, params, config),
 
 	update: async ({ params, config }: LessonUpdateConfig) =>
-		apiWithAuth.patch<{ courseSlug: string; message: string }>(
-			`${PREFIX}/${params?.id}`,
+		apiWithAuth.patch<LessonRequest>(`${PREFIX}/${params?.id}`, params, config),
+
+	updateVideo: async ({ params, config }: LessonUpdateVideoConfig) =>
+		apiWithAuth.patch<LessonRequest>(
+			`${PREFIX}/update-video/${params?.id}`,
 			params,
-			config
+			{
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				},
+				...config
+			}
 		),
 
 	delete: async ({ params, config }: LessonDeleteConfig) =>
-		apiWithAuth.delete<{ courseSlug: string; message: string }>(
-			`${PREFIX}/${params?.id}`,
-			config
-		)
+		apiWithAuth.delete<LessonRequest>(`${PREFIX}/${params?.id}`, config)
 }

@@ -1,11 +1,10 @@
 'use client'
 
-import { CheckCheck } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { Video } from '@/components'
-import { useGetBySlugCourseQuery, useGetCurrentUserQuery } from '@/shared/api'
-import { Button } from '@/shared/ui'
+import { useGetBySlugCourseQuery } from '@/shared/api'
+import { env } from '@/shared/constants'
 
 import { LessonsList, ToggleWatchedLesson } from './components'
 
@@ -16,7 +15,7 @@ interface CoursesWatchSlugPageProps {
 }
 
 const CoursesWatchSlugPage = ({ params }: CoursesWatchSlugPageProps) => {
-	const [selectedLesson, setSelectedLesson] = useState<string | null>(null)
+	const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null)
 
 	const { data: course } = useGetBySlugCourseQuery({
 		config: {
@@ -25,7 +24,7 @@ const CoursesWatchSlugPage = ({ params }: CoursesWatchSlugPageProps) => {
 	})
 
 	useEffect(() => {
-		setSelectedLesson(course?.lessons?.[0]?.id || null)
+		setSelectedLesson(course?.lessons?.[0] || null)
 	}, [course?.lessons])
 
 	if (!course) return
@@ -36,10 +35,20 @@ const CoursesWatchSlugPage = ({ params }: CoursesWatchSlugPageProps) => {
 				{course.title}
 			</h3>
 			<div className='mt-5 grid grid-cols-1 gap-5'>
-				{selectedLesson && (
+				{selectedLesson?.video && (
 					<div className='space-y-2'>
-						<Video width='100%' className='flex-grow' />
-						<ToggleWatchedLesson lessonId={selectedLesson} />
+						<p>{selectedLesson.title}</p>
+						<Video
+							src={`${env.API_URL}/${selectedLesson.video}`}
+							width='100%'
+							className='flex-grow'
+						/>
+						<ToggleWatchedLesson lessonId={selectedLesson.id} />
+					</div>
+				)}
+				{!selectedLesson?.video && (
+					<div className='space-y-2'>
+						<p>Нет видео</p>
 					</div>
 				)}
 				<div className='flex-grow space-y-2'>

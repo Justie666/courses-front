@@ -4,8 +4,8 @@ import { FormCreateLesson } from './form-create-lesson'
 import { LessonItem } from './lesson-item'
 
 interface LessonsListProps {
-	selectedLesson: string | null
-	setSelectedLesson: (lessonId: string | null) => void
+	selectedLesson: Lesson | null
+	setSelectedLesson: (lesson: Lesson | null) => void
 	lessons?: Lesson[]
 	courseId: string
 }
@@ -29,8 +29,8 @@ export const LessonsList = ({
 					<LessonItem
 						key={lesson.id}
 						lesson={lesson}
-						isActive={lesson.id === selectedLesson}
-						onClick={() => setSelectedLesson(lesson.id)}
+						isActive={lesson.id === selectedLesson?.id}
+						onClick={() => setSelectedLesson(lesson)}
 					/>
 				))}
 			</div>

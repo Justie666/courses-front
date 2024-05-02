@@ -9,6 +9,7 @@ import { Button } from '@/shared/ui'
 
 import { DeleteLesson } from './delete-lesson'
 import { DialogUpdateLesson } from './dialog-update-lesson'
+import { UpdateVideoLesson } from './update-video-lesson'
 
 interface LessonItemProps extends HTMLAttributes<HTMLButtonElement> {
 	lesson: Lesson
@@ -29,6 +30,7 @@ export const LessonItem = ({ isActive, lesson, ...rest }: LessonItemProps) => {
 				<div className='text-wrap text-start'>{lesson.title}</div>
 			</div>
 			<div className='ml-auto flex gap-1'>
+				<UpdateVideoLesson lessonId={lesson.id} />
 				<DialogUpdateLesson lesson={lesson} />
 				<DeleteLesson lessonId={lesson.id} />
 			</div>

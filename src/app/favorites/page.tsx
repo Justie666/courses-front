@@ -1,11 +1,6 @@
-'use client'
-
-import { CoursesList } from '@/components'
-import { useGetCurrentUserQuery } from '@/shared/api'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui'
 
 const FavoritesPage = () => {
-	const { data: user } = useGetCurrentUserQuery()
 	return (
 		<div>
 			<Tabs defaultValue='courses'>

@@ -40,10 +40,10 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 	}
 
 	const isFavoriteCourse = () =>
-		user?.userFavoriteCourse.some(favorite => favorite.courseId === course.id)
+		user?.userFavoriteCourse?.some(favorite => favorite.courseId === course.id)
 
 	const isPurchasedCourse = () =>
-		user?.userPurchasedCourse.some(
+		user?.userPurchasedCourse?.some(
 			purchasedCourse => purchasedCourse.courseId === course.id
 		)
 
