@@ -68,7 +68,7 @@ interface Course {
 	price: number
 	slug: string
 	image: string
-	ratingCourse?: any[]
+	ratingCourse?: unknown[]
 	categories?: Category[]
 	lessons?: Lesson[]
 }

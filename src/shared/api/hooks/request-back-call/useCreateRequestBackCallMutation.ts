@@ -22,7 +22,7 @@ export const useCreateRequestBackCallMutation = (
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
-		onSuccess: response => {
+		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['requests'] })
 			toast('Заявка была отправлена')
 		},

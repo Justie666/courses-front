@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface MutationSettings<Params = void, Func = unknown> {
 	config?: ApiRequestConfig
 	options?: import('@tanstack/react-query').UseMutationOptions<
@@ -31,7 +32,13 @@ interface BaseResponse {
 	message: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 enum EnumTokens {
 	ACCESS_TOKEN = 'accessToken',
 	REFRESH_TOKEN = 'refreshToken'
+}
+
+interface FAQItem {
+	question: string
+	answer: string
 }

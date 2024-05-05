@@ -15,8 +15,10 @@ export type SignUnConfig = RequestConfig<{
 	password: string
 }>
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type LogoutConfig = RequestConfig<{}>
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type AccessTokenConfig = RequestConfig<{}>
 
 export const AuthService = {

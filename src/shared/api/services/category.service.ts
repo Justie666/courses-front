@@ -2,7 +2,7 @@ import { api, apiWithAuth } from '../instances'
 
 const PREFIX = '/category'
 
-export type GetAllConfig = RequestConfig<{}>
+export type GetAllConfig = RequestConfig
 export type CategoryCreateConfig = RequestConfig<{ title: string }>
 export type CategoryUpdateConfig = RequestConfig<{ id: string; title: string }>
 export type CategoryDeleteConfig = RequestConfig<{ id: string }>

@@ -2,7 +2,7 @@ import { api, apiWithAuth } from '../instances'
 
 const PREFIX = '/course'
 
-export type CourseGetAllConfig = RequestConfig<{}>
+export type CourseGetAllConfig = RequestConfig
 export type CourseGetBySlugConfig = RequestConfig<{
 	slug: string
 }>

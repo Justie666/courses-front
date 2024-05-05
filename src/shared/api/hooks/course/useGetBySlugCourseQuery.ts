@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { CourseGetBySlugConfig, CourseService } from '../../services'
+import { CourseService } from '../../services'
 
 export const useGetBySlugCourseQuery = (
 	settings?: QuerySettings<typeof CourseService.getBySlug>

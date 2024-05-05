@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 import { cn } from '../lib/utils'
 
@@ -18,7 +18,7 @@ export const SocialBadge = ({
 	return (
 		<Link
 			target='_blank'
-			href={href}
+			to={href}
 			className={cn(
 				'flex items-center justify-center rounded-lg border border-slate-100 px-2 py-1 transition hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-800',
 				className

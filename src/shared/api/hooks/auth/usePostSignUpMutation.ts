@@ -1,7 +1,5 @@
-'use client'
-
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import { ROUTES } from '@/shared/constants'
@@ -12,7 +10,7 @@ import { AuthService, SignUnConfig } from '../../services'
 export const usePostSignUpMutation = (
 	settings?: MutationSettings<SignUnConfig, typeof AuthService.signUp>
 ) => {
-	const router = useRouter()
+	const navigate = useNavigate()
 	const queryClient = useQueryClient()
 
 	return useMutation({
@@ -25,9 +23,8 @@ export const usePostSignUpMutation = (
 		...settings?.options,
 		onSuccess: response => {
 			saveAccessToken(response.data.accessToken)
-			router.push(ROUTES.main)
 			queryClient.invalidateQueries({ queryKey: ['user'] })
-			queryClient.refetchQueries({ queryKey: ['user'] })
+			navigate(ROUTES.main)
 			toast('Вы зарегистрировались и вошли в аккаунт')
 		},
 		onError(error) {

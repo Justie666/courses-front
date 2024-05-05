@@ -19,7 +19,7 @@ export const useCreateCategoryMutation = (
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
-		onSuccess: response => {
+		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['categories'] })
 			toast('Категория была добавлена')
 		},

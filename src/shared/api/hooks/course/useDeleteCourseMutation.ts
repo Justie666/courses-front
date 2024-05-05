@@ -16,7 +16,7 @@ export const useDeleteCourseMutation = (
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
-		onSuccess: response => {
+		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['courses'] })
 			toast('Курс был удален')
 		},

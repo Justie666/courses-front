@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { removeAccessToken, saveAccessToken } from '@/shared/services'
+import { saveAccessToken } from '@/shared/services'
 
 import { AccessTokenConfig, AuthService } from '../../services'
 

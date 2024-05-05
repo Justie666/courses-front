@@ -1,5 +1,6 @@
 export * from './auth'
 export * from './courses'
+export * from './faq.tsx'
 export * from './menu-burger.tsx'
 export * from './scroll-to-top.tsx'
 export * from './toggle-theme.tsx'

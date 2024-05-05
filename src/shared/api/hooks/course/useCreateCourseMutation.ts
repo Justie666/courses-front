@@ -16,7 +16,7 @@ export const useCreateCourseMutation = (
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
-		onSuccess: response => {
+		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['courses'] })
 			toast('Курс был добавлен')
 		},

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
+import { useUser } from '@/app/user-provider'
 import { removeAccessToken } from '@/shared/services'
 
 import { AuthService, LogoutConfig } from '../../services'
@@ -8,6 +9,7 @@ import { AuthService, LogoutConfig } from '../../services'
 export const usePostLogoutMutation = (
 	settings?: MutationSettings<LogoutConfig, typeof AuthService.logout>
 ) => {
+	const { setUser } = useUser()
 	const queryClient = useQueryClient()
 
 	return useMutation({
@@ -18,7 +20,8 @@ export const usePostLogoutMutation = (
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
-		onSuccess: response => {
+		onSuccess: () => {
+			setUser(null)
 			removeAccessToken()
 			toast('Вы вышли из аккаунта')
 			queryClient.invalidateQueries({ queryKey: ['user'] })

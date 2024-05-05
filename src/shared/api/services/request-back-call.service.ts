@@ -2,7 +2,7 @@ import { apiWithAuth } from '../instances'
 
 const PREFIX = '/request-back-call'
 
-export type GetAllRequestBackCallConfig = RequestConfig<{}>
+export type GetAllRequestBackCallConfig = RequestConfig
 
 export type CreateRequestBackCallConfig = RequestConfig<{
 	phone: string

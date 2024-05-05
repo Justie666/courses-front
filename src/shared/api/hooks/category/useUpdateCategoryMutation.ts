@@ -1,11 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import {
-	CategoryCreateConfig,
-	CategoryService,
-	CategoryUpdateConfig
-} from '../../services'
+import { CategoryService, CategoryUpdateConfig } from '../../services'
 
 export const useUpdateCategoryMutation = (
 	settings?: MutationSettings<
@@ -23,7 +19,7 @@ export const useUpdateCategoryMutation = (
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
-		onSuccess: response => {
+		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['categories'] })
 			queryClient.invalidateQueries({ queryKey: ['courses'] })
 			toast('Категория была изменена')

@@ -1,18 +1,10 @@
-import { Heart, Star } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Star } from 'lucide-react'
 
-import {
-	useGetCurrentUserQuery,
-	useToggleUserFavoriteCourseMutation,
-	useUserBuyCourseQuery
-} from '@/shared/api'
-import { env, ROUTES } from '@/shared/constants'
+import { env } from '@/shared/constants'
 import { declensionLesson } from '@/shared/helpers'
 import { cn } from '@/shared/lib/utils'
 import {
 	Badge,
-	Button,
 	Card,
 	CardContent,
 	CardFooter,
@@ -20,46 +12,28 @@ import {
 	CardTitle
 } from '@/shared/ui'
 
-import { AdminFeaturesCourses } from './features'
+import {
+	AdminFeaturesCourses,
+	BuyOrWatchCourse,
+	ToggleFavoriteCourse
+} from './features'
 
 interface CourseCardProps {
 	course: Course
 }
 
 export const CourseCard = ({ course }: CourseCardProps) => {
-	const { data: user } = useGetCurrentUserQuery()
-	const { mutate: buyCourse } = useUserBuyCourseQuery()
-	const { mutate: toggleUserFavoriteCourse } =
-		useToggleUserFavoriteCourseMutation()
-
-	const handleBuyCourse = () => {
-		buyCourse({ params: { courseId: course.id } })
-	}
-
-	const handleToggleUserFavoriteCourse = () => {
-		toggleUserFavoriteCourse({ params: { courseId: course.id } })
-	}
-
-	const isFavoriteCourse = () =>
-		user?.userFavoriteCourse?.some(favorite => favorite.courseId === course.id)
-
-	const isPurchasedCourse = () =>
-		user?.userPurchasedCourse?.some(
-			purchasedCourse => purchasedCourse.courseId === course.id
-		)
-
 	return (
-		<Card className='group flex flex-col'>
-			<CardHeader className='relative overflow-hidden p-0'>
+		<Card className='group flex flex-col overflow-hidden'>
+			<CardHeader className='relative p-0'>
+				<img
+					src={`${env.API_URL}/${course.image}`}
+					alt={course.title}
+					className={cn(
+						'h-[250px] object-cover transition-all group-hover:scale-105'
+					)}
+				/>
 				<AdminFeaturesCourses course={course} />
-				<div className='h-[200px]'>
-					<Image
-						src={`${env.API_URL}/${course.image}`}
-						alt={course.title}
-						fill
-						className={cn('object-cover transition-all group-hover:scale-105')}
-					/>
-				</div>
 			</CardHeader>
 			<CardContent className='flex-grow px-2 py-6 md:px-6'>
 				<CardTitle>{course.title}</CardTitle>
@@ -80,30 +54,10 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 			<CardFooter className='flex items-center justify-between border-t px-2 py-3 md:px-6'>
 				<p>{course.price ? course.price : 'Бесплатно'}</p>
 				<div className='flex items-center gap-1'>
-					<Button
-						disabled={!user}
-						onClick={handleToggleUserFavoriteCourse}
-						size='icon'
-						variant='outline'>
-						{isFavoriteCourse() && <Heart fill='gray' stroke='gray' />}
-						{!isFavoriteCourse() && <Heart />}
-					</Button>
-					<div>
-						{isPurchasedCourse() && (
-							<Button asChild variant='outline'>
-								<Link href={`${ROUTES['courses-watch']}/${course.slug}`}>
-									Смотреть
-								</Link>
-							</Button>
-						)}
-						{!isPurchasedCourse() && (
-							<Button onClick={handleBuyCourse} variant='outline'>
-								Купить
-							</Button>
-						)}
-					</div>
+					<ToggleFavoriteCourse courseId={course.id} />
+					<BuyOrWatchCourse course={course} />
 					{/* <Button asChild variant='outline'>
-						<Link href={`${ROUTES.courses}/${course.slug}}`}>Подробнее</Link>
+						<Link to={`${ROUTES.courses}/${course.slug}}`}>Подробнее</Link>
 					</Button> */}
 				</div>
 			</CardFooter>
