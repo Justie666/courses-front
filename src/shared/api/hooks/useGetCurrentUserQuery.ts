@@ -14,11 +14,6 @@ export const useGetCurrentUserQuery = (
 		...settings?.options
 	})
 
-	if (query.data) {
-		setUser(query.data)
-		localStorage.setItem('user', JSON.stringify(query.data))
-	}
-
 	if (query.isError) {
 		setUser(null)
 		return {

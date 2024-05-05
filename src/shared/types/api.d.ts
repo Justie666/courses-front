@@ -96,3 +96,20 @@ interface RequestBackCall {
 	userId: string
 	user: User
 }
+
+type StatusProject = 'IN_PROGRESS' | 'CANCELLED' | 'READY'
+
+interface Project {
+	id: string
+	createdAt: string
+	updatedAt: string
+	title: string
+	status: StatusProject
+}
+
+interface Direction {
+	id: string
+	createdAt: string
+	updatedAt: string
+	title: string
+}

@@ -27,6 +27,22 @@ export const RULES = {
 			}
 		}
 	},
+	project: {
+		title: {
+			min: {
+				value: 2,
+				message: 'Название проекта должно содержать минимум 2 символа'
+			}
+		}
+	},
+	direction: {
+		title: {
+			min: {
+				value: 2,
+				message: 'Название направления должно содержать минимум 2 символа'
+			}
+		}
+	},
 	backCall: {
 		phone: {
 			regex: {

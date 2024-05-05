@@ -7,7 +7,7 @@ interface CategoryItemProps {
 
 export const CategoryItem = ({ category }: CategoryItemProps) => {
 	return (
-		<div className='text-md flex items-center gap-2 rounded-2xl border px-3 py-2'>
+		<div className='text-md flex items-center gap-2 rounded-2xl border px-3 py-2 bg-muted/50'>
 			{category.title}
 			<div className='flex gap-2'>
 				<DialogUpdateCategory category={category} />

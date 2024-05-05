@@ -42,3 +42,8 @@ interface FAQItem {
 	question: string
 	answer: string
 }
+
+interface ValueOption {
+	value: string
+	label: string
+}

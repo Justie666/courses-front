@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
+import { useUser } from '@/app/user-provider'
 import { ROUTES } from '@/shared/constants'
 import { saveAccessToken } from '@/shared/services'
 
@@ -10,6 +11,7 @@ import { AuthService, SignInConfig } from '../../services'
 export const usePostSignInMutation = (
 	settings?: MutationSettings<SignInConfig, typeof AuthService.signIn>
 ) => {
+	const { setUser } = useUser()
 	const navigate = useNavigate()
 	const queryClient = useQueryClient()
 
@@ -25,6 +27,7 @@ export const usePostSignInMutation = (
 			saveAccessToken(response.data.accessToken)
 			queryClient.invalidateQueries({ queryKey: ['user'] })
 			navigate(ROUTES.main)
+			setUser(response.data.user)
 			toast('Вы успешно вошли в систему')
 		},
 		onError(error) {

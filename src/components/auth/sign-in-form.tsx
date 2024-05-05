@@ -1,12 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { usePostSignInMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
 import {
-	Button,
 	Form,
 	FormControl,
 	FormField,
@@ -15,6 +13,8 @@ import {
 	FormMessage,
 	Input
 } from '@/shared/ui'
+
+import { ButtonSubmit } from '../button-submit'
 
 const formSchema = z.object({
 	email: z.string().email({ message: RULES.email.emailError }),
@@ -27,7 +27,7 @@ export const SignInForm = () => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			email: 'tochka@gmail.com',
+			email: 'tochka2k@gmail.com',
 			password: '12345678'
 		}
 	})
@@ -40,7 +40,9 @@ export const SignInForm = () => {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className='flex flex-col gap-2'>
 				<FormField
 					control={form.control}
 					name='email'
@@ -67,10 +69,7 @@ export const SignInForm = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit' className='w-full' disabled={isPending}>
-					{isPending && <Loader2 className='mr-2 animate-spin' />}
-					Авторизоваться
-				</Button>
+				<ButtonSubmit isPending={isPending} label='Авторизоваться' />
 			</form>
 		</Form>
 	)

@@ -22,6 +22,7 @@ export const usePostLogoutMutation = (
 		...settings?.options,
 		onSuccess: () => {
 			setUser(null)
+			localStorage.removeItem('user')
 			removeAccessToken()
 			toast('Вы вышли из аккаунта')
 			queryClient.invalidateQueries({ queryKey: ['user'] })

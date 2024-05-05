@@ -1,7 +1,7 @@
-import { useGetCurrentUserQuery } from '../api'
+import { useUser } from '@/app/user-provider'
 
 export const useIsWatchedLesson = (lessonId: string) => {
-	const { data: user } = useGetCurrentUserQuery()
+	const { user } = useUser()
 
 	return user?.userWatchedLesson?.some(
 		watchedLesson => watchedLesson.lessonId === lessonId

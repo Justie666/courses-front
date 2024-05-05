@@ -9,5 +9,6 @@ export const ROUTES = {
 	applications: '/applications',
 	'courses-watch': '/courses/watch',
 	'user-courses': '/user/courses',
-	'user-applications': '/user/applications'
+	'user-applications': '/user/applications',
+	'admin-internship': '/admin/internship'
 }

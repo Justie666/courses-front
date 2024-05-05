@@ -1,13 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { ButtonSubmit } from '@/components'
 import { useCreateCategoryMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
 import { useResetFormOnSuccess } from '@/shared/hooks'
 import {
-	Button,
 	Form,
 	FormControl,
 	FormField,
@@ -61,13 +60,7 @@ export const FormCreateCourse = () => {
 						</FormItem>
 					)}
 				/>
-				<Button
-					type='submit'
-					className='mt-4'
-					disabled={isPendingCreateCategory}>
-					{isPendingCreateCategory && <Loader2 className='mr-2 animate-spin' />}
-					Добавить
-				</Button>
+				<ButtonSubmit isPending={isPendingCreateCategory} label='Добавить' />
 			</form>
 		</Form>
 	)

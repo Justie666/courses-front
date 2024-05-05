@@ -1,13 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { ButtonSubmit } from '@/components'
 import { useCreateLessonMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
 import { useResetFormOnSuccess } from '@/shared/hooks'
 import {
-	Button,
 	Form,
 	FormControl,
 	FormField,
@@ -61,13 +60,12 @@ export const FormCreateLesson = ({ courseId }: FormCreateLessonProps) => {
 						</FormItem>
 					)}
 				/>
-				<Button
-					type='submit'
+				<ButtonSubmit
+					className='m-0'
+					isPending={isPendingCreateLesson}
+					label='Создать'
 					variant='outline'
-					disabled={isPendingCreateLesson}>
-					{isPendingCreateLesson && <Loader2 className='mr-2 animate-spin' />}
-					Создать
-				</Button>
+				/>
 			</form>
 		</Form>
 	)

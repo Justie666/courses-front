@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { MainLayout } from '@/layouts'
 import {
+	AdminInternshipPage,
 	AdminPage,
 	AdminRequestsPage,
 	HomePage,
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
 			{ path: ROUTES.internship, element: <InternshipPage /> },
 			{ path: ROUTES.admin, element: <AdminPage /> },
 			{ path: ROUTES['admin-requests'], element: <AdminRequestsPage /> },
+			{ path: ROUTES['admin-internship'], element: <AdminInternshipPage /> },
 			{ path: ROUTES.profile, element: <ProfilePage /> },
 			{
 				path: `${ROUTES['courses-watch']}/:slug`,

@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react'
 
-import { useGetCurrentUserQuery } from '@/shared/api'
+import { useUser } from '@/app/user-provider'
 
 interface ForAdminProps extends PropsWithChildren {}
 
 export const ForAdmin = ({ children }: ForAdminProps) => {
-	const { data: user } = useGetCurrentUserQuery()
+	const { user } = useUser()
 
 	if (!user) return null
 

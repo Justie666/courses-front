@@ -1,8 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { ButtonSubmit } from '@/components'
 import { useCreateRequestBackCallMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
 import { useResetFormOnSuccess } from '@/shared/hooks'
@@ -120,16 +120,10 @@ export const FormBackCall = () => {
 									</FormItem>
 								)}
 							/>
-							<Button
-								type='submit'
-								className='mt-4'
-								disabled={isPendingCreateRequestBackCall}
-								onClick={form.handleSubmit(onSubmit)}>
-								{isPendingCreateRequestBackCall && (
-									<Loader2 className='mr-2 animate-spin' />
-								)}
-								Отправить
-							</Button>
+							<ButtonSubmit
+								isPending={isPendingCreateRequestBackCall}
+								label='Отправить'
+							/>
 						</div>
 					</DialogContent>
 				</Dialog>

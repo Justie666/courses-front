@@ -1,9 +1,10 @@
+import { useUser } from '@/app/user-provider'
 import { CoursesList } from '@/components'
-import { useGetAllCourseQuery, useGetCurrentUserQuery } from '@/shared/api'
+import { useGetAllCourseQuery } from '@/shared/api'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui'
 
 export const UserCoursesPage = () => {
-	const { data: user } = useGetCurrentUserQuery()
+	const { user } = useUser()
 	const { data: courses, isPending: isCoursesPending } = useGetAllCourseQuery()
 
 	const favoritesCourses = courses?.filter(course =>

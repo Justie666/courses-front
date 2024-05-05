@@ -20,9 +20,6 @@ export const AdminPage = () => {
 				<TabsTrigger className='w-full' value='courses'>
 					Курсы
 				</TabsTrigger>
-				<TabsTrigger className='w-full' value='account'>
-					Стажировки
-				</TabsTrigger>
 			</TabsList>
 			<TabsContent value='categories'>
 				<DialogCreateCategory />

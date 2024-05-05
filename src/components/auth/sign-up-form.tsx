@@ -5,7 +5,6 @@ import { z } from 'zod'
 import { usePostSignUpMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
 import {
-	Button,
 	Form,
 	FormControl,
 	FormField,
@@ -14,6 +13,8 @@ import {
 	FormMessage,
 	Input
 } from '@/shared/ui'
+
+import { ButtonSubmit } from '../button-submit'
 
 const formSchema = z.object({
 	name: z.string().min(RULES.name.minLength, {
@@ -35,7 +36,7 @@ export const SignUpForm = () => {
 		}
 	})
 
-	const { mutate } = usePostSignUpMutation()
+	const { mutate, isPending } = usePostSignUpMutation()
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
 		mutate({ params: values })
@@ -43,7 +44,9 @@ export const SignUpForm = () => {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className='flex flex-col gap-2'>
 				<FormField
 					control={form.control}
 					name='name'
@@ -83,9 +86,7 @@ export const SignUpForm = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit' className='w-full'>
-					Зарегистрироваться
-				</Button>
+				<ButtonSubmit isPending={isPending} label='Зарегистрироваться' />
 			</form>
 		</Form>
 	)

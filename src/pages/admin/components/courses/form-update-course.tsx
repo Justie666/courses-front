@@ -1,12 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { ButtonSubmit } from '@/components'
 import { useGetAllCategoriesQuery, useUpdateCourseMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
 import {
-	Button,
 	Checkbox,
 	Form,
 	FormControl,
@@ -116,10 +115,7 @@ export const FormUpdateCourse = ({ course }: FormUpdateCourseProps) => {
 					))}
 					<FormMessage />
 				</FormItem>
-				<Button type='submit' className='mt-4' disabled={isPending}>
-					{isPending && <Loader2 className='mr-2 animate-spin' />}
-					Изменить
-				</Button>
+				<ButtonSubmit isPending={isPending} label='Изменить' />
 			</form>
 		</Form>
 	)

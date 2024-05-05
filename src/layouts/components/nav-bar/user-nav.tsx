@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 
+import { useUser } from '@/app/user-provider'
 import { ForAdmin } from '@/components'
-import { useGetCurrentUserQuery, usePostLogoutMutation } from '@/shared/api'
+import { usePostLogoutMutation } from '@/shared/api'
 import { ROUTES } from '@/shared/constants'
 import {
 	Avatar,
@@ -16,7 +17,7 @@ import {
 } from '@/shared/ui'
 
 export const UserNav = () => {
-	const { data: user } = useGetCurrentUserQuery()
+	const { user } = useUser()
 	const { mutate } = usePostLogoutMutation()
 
 	const handleClickLogout = () => {
@@ -49,6 +50,9 @@ export const UserNav = () => {
 					<DropdownMenuSeparator />
 					<DropdownMenuItem>
 						<Link to={ROUTES.admin}>Админка</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Link to={ROUTES['admin-internship']}>Стажировка</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem>
 						<Link to={ROUTES['admin-requests']}>Заявки</Link>
