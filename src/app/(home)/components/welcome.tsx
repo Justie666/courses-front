@@ -13,7 +13,7 @@ export const Welcome = () => {
 				<p className='mt-3 text-3xl font-medium tracking-tighter md:text-4xl lg:text-6xl'>
 					Курсы, стажировки и многое другое
 				</p>
-				<h1 className='mt-3 bg-gradient-to-r from-primary/80 to-primary/50 bg-clip-text text-3xl font-medium tracking-tight text-transparent md:text-4xl lg:text-6xl'>
+				<h1 className='mt-3 bg-gradient-to-r from-primary/80 to-primary/90 bg-clip-text text-3xl font-medium tracking-tight text-transparent md:text-4xl lg:text-6xl'>
 					IT-АКАДЕМИЯ Lad
 				</h1>
 			</div>

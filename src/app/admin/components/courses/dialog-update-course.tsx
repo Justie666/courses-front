@@ -9,7 +9,11 @@ import {
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger
+	DialogTrigger,
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger
 } from '@/shared/ui'
 
 import { FormUpdateCourse } from './form-update-course'
@@ -25,14 +29,21 @@ export const DialogUpdateCourse = ({
 }: DialogUpdateCourseProps) => {
 	return (
 		<Dialog>
-			<DialogTrigger asChild className={cn('', className)}>
-				<Button size='icon' variant='outline'>
-					<Pencil />
-				</Button>
-			</DialogTrigger>
+			<TooltipProvider delayDuration={0}>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<DialogTrigger asChild className={cn('', className)}>
+							<Button size='icon' variant='outline'>
+								<Pencil />
+							</Button>
+						</DialogTrigger>
+					</TooltipTrigger>
+					<TooltipContent>Изменить курс</TooltipContent>
+				</Tooltip>
+			</TooltipProvider>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>Изменить категорию</DialogTitle>
+					<DialogTitle>Изменить курс</DialogTitle>
 				</DialogHeader>
 				<div>
 					<FormUpdateCourse course={course} />

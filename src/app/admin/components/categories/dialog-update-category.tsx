@@ -9,7 +9,11 @@ import {
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger
+	DialogTrigger,
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger
 } from '@/shared/ui'
 
 import { FormUpdateCategory } from './form-update-category'
@@ -25,11 +29,18 @@ export const DialogUpdateCategory = ({
 }: DialogUpdateCategoryProps) => {
 	return (
 		<Dialog>
-			<DialogTrigger asChild className={cn('', className)}>
-				<Button size='icon' variant='outline'>
-					<Pencil size={18} />
-				</Button>
-			</DialogTrigger>
+			<TooltipProvider delayDuration={0}>
+				<Tooltip>
+					<TooltipTrigger asChild>
+						<DialogTrigger asChild className={cn('', className)}>
+							<Button size='icon' variant='outline'>
+								<Pencil size={18} />
+							</Button>
+						</DialogTrigger>
+					</TooltipTrigger>
+					<TooltipContent>Изменить категорию</TooltipContent>
+				</Tooltip>
+			</TooltipProvider>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Изменить категорию</DialogTitle>

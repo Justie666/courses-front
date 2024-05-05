@@ -33,6 +33,12 @@ export const RULES = {
 				rule: '',
 				message: 'Неверный формат телефона'
 			}
+		},
+		problem: {
+			min: {
+				value: 10,
+				message: 'Описание проблемы должно содержать минимум 10 символов'
+			}
 		}
 	},
 	lesson: {

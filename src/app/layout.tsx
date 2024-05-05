@@ -8,7 +8,7 @@ import { ScrollToTop } from '@/components'
 import { Providers } from '../root/providers'
 import { Footer, NavBar } from './components'
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
 	title: 'Главная',
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='ru' suppressHydrationWarning>
-			<body className={`${inter.className}`}>
+			<body className={`${font.className}`}>
 				<Providers>
 					<div className='flex min-h-screen flex-col justify-between gap-[20px] sm:gap-[40px]'>
 						<NavBar />

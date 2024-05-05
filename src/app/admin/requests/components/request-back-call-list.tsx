@@ -1,7 +1,4 @@
 'use client'
-
-import { request } from 'http'
-
 import { useGetAllRequestBackCallQuery } from '@/shared/api'
 import { getRuStatusRequestBackCall } from '@/shared/helpers'
 import {
@@ -16,7 +13,6 @@ import {
 
 export const RequestBackCallList = () => {
 	const { data: requestsBackCall } = useGetAllRequestBackCallQuery()
-	console.log(321)
 
 	if (!requestsBackCall) return <div></div>
 
@@ -27,6 +23,7 @@ export const RequestBackCallList = () => {
 					<TableRow>
 						<TableHead className='w-[100px]'>Номер</TableHead>
 						<TableHead>Статус</TableHead>
+						<TableHead>Проблема</TableHead>
 						<TableHead>Комментарий</TableHead>
 						<TableHead className='text-right'>Действия</TableHead>
 					</TableRow>
@@ -38,6 +35,7 @@ export const RequestBackCallList = () => {
 							<TableCell>
 								{getRuStatusRequestBackCall(request.status)}
 							</TableCell>
+							<TableCell>{request.problem}</TableCell>
 							<TableCell>{request.comment || 'Нет'}</TableCell>
 							<TableCell className='text-right'>
 								<div className='flex flex-col items-end gap-2'>

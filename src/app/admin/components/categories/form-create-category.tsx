@@ -7,6 +7,7 @@ import { z } from 'zod'
 
 import { useCreateCategoryMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
+import { useResetFormOnSuccess } from '@/shared/hooks'
 import {
 	Button,
 	Form,
@@ -32,11 +33,17 @@ export const FormCreateCourse = () => {
 		}
 	})
 
-	const { mutate: createCategory, isPending } = useCreateCategoryMutation()
+	const {
+		mutate: createCategory,
+		isPending: isPendingCreateCategory,
+		isSuccess: isSuccessCreateCategory
+	} = useCreateCategoryMutation()
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
 		createCategory({ params: values })
 	}
+
+	useResetFormOnSuccess(form, isSuccessCreateCategory)
 
 	return (
 		<Form {...form}>
@@ -56,8 +63,11 @@ export const FormCreateCourse = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit' className='mt-4' disabled={isPending}>
-					{isPending && <Loader2 className='mr-2 animate-spin' />}
+				<Button
+					type='submit'
+					className='mt-4'
+					disabled={isPendingCreateCategory}>
+					{isPendingCreateCategory && <Loader2 className='mr-2 animate-spin' />}
 					Добавить
 				</Button>
 			</form>

@@ -91,6 +91,7 @@ interface RequestBackCall {
 	updatedAt: string
 	status: StatusRequestBackCall
 	comment: string
+	problem: string
 	phone: string
 	userId: string
 	user: User

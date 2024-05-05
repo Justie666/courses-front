@@ -7,6 +7,7 @@ import { z } from 'zod'
 
 import { useCreateCourseMutation, useGetAllCategoriesQuery } from '@/shared/api'
 import { RULES } from '@/shared/constants'
+import { useResetFormOnSuccess } from '@/shared/hooks'
 import {
 	Button,
 	Checkbox,
@@ -41,12 +42,17 @@ export const FormCreateCourse = () => {
 
 	const { data: categories } = useGetAllCategoriesQuery()
 
-	const { mutate: createCourse, isPending } = useCreateCourseMutation()
+	const {
+		mutate: createCourse,
+		isPending: isPendingCreateCourse,
+		isSuccess: isSuccessCreateCourse
+	} = useCreateCourseMutation()
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
-		console.log(321)
 		createCourse({ params: values })
 	}
+
+	useResetFormOnSuccess(form, isSuccessCreateCourse)
 
 	return (
 		<Form {...form}>
@@ -115,8 +121,8 @@ export const FormCreateCourse = () => {
 					))}
 					<FormMessage />
 				</FormItem>
-				<Button type='submit' className='mt-4' disabled={isPending}>
-					{isPending && <Loader2 className='mr-2 animate-spin' />}
+				<Button type='submit' className='mt-4' disabled={isPendingCreateCourse}>
+					{isPendingCreateCourse && <Loader2 className='mr-2 animate-spin' />}
 					Добавить
 				</Button>
 			</form>

@@ -5,13 +5,13 @@ import { z } from 'zod'
 
 import { useCreateLessonMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
+import { useResetFormOnSuccess } from '@/shared/hooks'
 import {
 	Button,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 	Input
 } from '@/shared/ui'
@@ -34,12 +34,17 @@ export const FormCreateLesson = ({ courseId }: FormCreateLessonProps) => {
 		}
 	})
 
-	const { mutate: createLesson, isPending: isPendingLesson } =
-		useCreateLessonMutation()
+	const {
+		mutate: createLesson,
+		isPending: isPendingCreateLesson,
+		isSuccess: isSuccessCreateLesson
+	} = useCreateLessonMutation()
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
 		createLesson({ params: { ...values, courseId } })
 	}
+
+	useResetFormOnSuccess(form, isSuccessCreateLesson)
 
 	return (
 		<Form {...form}>
@@ -56,8 +61,11 @@ export const FormCreateLesson = ({ courseId }: FormCreateLessonProps) => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit' variant='outline' disabled={isPendingLesson}>
-					{isPendingLesson && <Loader2 className='mr-2 animate-spin' />}
+				<Button
+					type='submit'
+					variant='outline'
+					disabled={isPendingCreateLesson}>
+					{isPendingCreateLesson && <Loader2 className='mr-2 animate-spin' />}
 					Создать
 				</Button>
 			</form>

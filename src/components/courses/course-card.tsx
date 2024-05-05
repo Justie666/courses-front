@@ -8,6 +8,7 @@ import {
 	useUserBuyCourseQuery
 } from '@/shared/api'
 import { env, ROUTES } from '@/shared/constants'
+import { declensionLesson } from '@/shared/helpers'
 import { cn } from '@/shared/lib/utils'
 import {
 	Badge,
@@ -62,6 +63,9 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 			</CardHeader>
 			<CardContent className='flex-grow px-2 py-6 md:px-6'>
 				<CardTitle>{course.title}</CardTitle>
+				<Badge className='mt-3 py-1' variant='outline'>
+					{course.lessons?.length} {declensionLesson(course.lessons?.length)}
+				</Badge>
 				<p className='mt-3 flex gap-2'>
 					<Star fill='yellow' strokeWidth={0} /> 5.0
 				</p>

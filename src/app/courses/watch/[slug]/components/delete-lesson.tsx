@@ -21,10 +21,7 @@ export const DeleteLesson = ({ lessonId }: DeleteLessonProps) => {
 	const { mutate: deleteLesson, isPending: isPendingDeleteLesson } =
 		useDeleteLessonMutation()
 
-	const handleDeleteLesson = (
-		event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
-	) => {
-		event.stopPropagation()
+	const handleDeleteLesson = () => {
 		deleteLesson({ params: { id: lessonId } })
 	}
 
@@ -34,7 +31,7 @@ export const DeleteLesson = ({ lessonId }: DeleteLessonProps) => {
 				<Tooltip>
 					<TooltipTrigger asChild>
 						<Button
-							onClick={e => handleDeleteLesson(e)}
+							onClick={handleDeleteLesson}
 							variant='outline'
 							size='icon'
 							disabled={isPendingDeleteLesson}>

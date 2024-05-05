@@ -7,19 +7,30 @@ import { z } from 'zod'
 
 import { useCreateRequestBackCallMutation } from '@/shared/api'
 import { RULES } from '@/shared/constants'
+import { useResetFormOnSuccess } from '@/shared/hooks'
 import {
 	Button,
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
+	FormLabel,
 	FormMessage,
-	Input
+	Input,
+	Textarea
 } from '@/shared/ui'
 
 const formSchema = z.object({
 	phone: z.string().regex(/^(\+7|7|8)\d{3}\d{3}\d{2}\d{2}$/, {
 		message: RULES.backCall.phone.regex.message
+	}),
+	problem: z.string().min(RULES.backCall.problem.min.value, {
+		message: RULES.backCall.problem.min.message
 	})
 })
 
@@ -27,16 +38,23 @@ export const FormBackCall = () => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			phone: '79998881255'
+			phone: '',
+			problem: ''
 		}
 	})
 
-	const { mutate: createRequestBackCall, isPending } =
-		useCreateRequestBackCallMutation()
+	const {
+		mutate: createRequestBackCall,
+		isPending: isPendingCreateRequestBackCall,
+		isSuccess: isSuccessCreateRequestBackCall
+	} = useCreateRequestBackCallMutation()
 
-	const onSubmit = (values: z.infer<typeof formSchema>) => {
+	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		createRequestBackCall({ params: values })
+		form.reset()
 	}
+
+	useResetFormOnSuccess(form, isSuccessCreateRequestBackCall)
 
 	return (
 		<Form {...form}>
@@ -60,7 +78,63 @@ export const FormBackCall = () => {
 						</FormItem>
 					)}
 				/>
-				<Button disabled={isPending}>Отправить</Button>
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button type='button'>Отправить</Button>
+					</DialogTrigger>
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>Заявка на обратный звонок</DialogTitle>
+						</DialogHeader>
+						<div className='flex flex-col gap-2'>
+							<FormField
+								control={form.control}
+								name='phone'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Номер телефона</FormLabel>
+										<FormControl>
+											<Input
+												type='number'
+												placeholder='Номер телефона'
+												className='bg-muted/50 dark:bg-muted/80'
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name='problem'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Проблема с который вы столкнулись</FormLabel>
+										<FormControl>
+											<Textarea
+												placeholder='Проблема'
+												{...field}
+												className='bg-muted/50 dark:bg-muted/80'
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<Button
+								type='submit'
+								className='mt-4'
+								disabled={isPendingCreateRequestBackCall}
+								onClick={form.handleSubmit(onSubmit)}>
+								{isPendingCreateRequestBackCall && (
+									<Loader2 className='mr-2 animate-spin' />
+								)}
+								Отправить
+							</Button>
+						</div>
+					</DialogContent>
+				</Dialog>
 			</form>
 		</Form>
 	)

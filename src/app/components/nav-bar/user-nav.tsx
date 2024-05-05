@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 
+import { ForAdmin } from '@/components'
 import { useGetCurrentUserQuery, usePostLogoutMutation } from '@/shared/api'
 import { ROUTES } from '@/shared/constants'
 import {
@@ -18,7 +19,6 @@ import {
 
 export const UserNav = () => {
 	const { data: user } = useGetCurrentUserQuery()
-	console.log(user)
 	const { mutate } = usePostLogoutMutation()
 
 	const handleClickLogout = () => {
@@ -41,20 +41,21 @@ export const UserNav = () => {
 				<DropdownMenuSeparator />
 
 				<DropdownMenuItem>
-					<Link href={ROUTES.favorites}>Избранное</Link>
+					<Link href={ROUTES['user-courses']}>Мои курсы</Link>
 				</DropdownMenuItem>
 				<DropdownMenuItem>
-					<Link href={ROUTES.applications}>Мои заявки</Link>
+					<Link href={ROUTES['user-applications']}>Мои заявки</Link>
 				</DropdownMenuItem>
 
-				<DropdownMenuSeparator />
-
-				<DropdownMenuItem>
-					<Link href={ROUTES.admin}>Админка</Link>
-				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Link href={ROUTES['admin-requests']}>Заявки</Link>
-				</DropdownMenuItem>
+				<ForAdmin>
+					<DropdownMenuSeparator />
+					<DropdownMenuItem>
+						<Link href={ROUTES.admin}>Админка</Link>
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Link href={ROUTES['admin-requests']}>Заявки</Link>
+					</DropdownMenuItem>
+				</ForAdmin>
 
 				<DropdownMenuSeparator />
 

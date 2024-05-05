@@ -5,7 +5,6 @@ interface RequestBackCallItemProps {
 }
 
 export const RequestBackCallItem = ({ request }: RequestBackCallItemProps) => {
-	console.log(request.status)
 	return (
 		<div>
 			{request.phone}

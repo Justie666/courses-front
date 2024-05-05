@@ -1,12 +1,18 @@
 'use client'
 
+import { useLocalStorage } from '@uidotdev/usehooks'
 import { PropsWithChildren } from 'react'
 
-import { useGetCurrentUserQuery } from '@/shared/api'
-
 export const ForUser = ({ children }: PropsWithChildren) => {
-	const { data: user, isError } = useGetCurrentUserQuery()
-	if (!user || isError) return null
+	// const { data: user, isError } = useGetCurrentUserQuery()
+	// if (!user || isError) return null
+	// if (!user || isError) return null
+
+	// const user = JSON.parse(localStorage.getItem('user'))
+
+	const [user] = useLocalStorage('user', null)
+
+	if (!user) return null
 
 	return children
 }

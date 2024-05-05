@@ -1,7 +1,15 @@
 import { ImageIcon } from 'lucide-react'
 
 import { useUpdateImageCourseMutation } from '@/shared/api'
-import { Button, Input, Label } from '@/shared/ui'
+import {
+	Button,
+	Input,
+	Label,
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger
+} from '@/shared/ui'
 
 interface UpdateImageCourseProps {
 	courseId: string
@@ -26,17 +34,24 @@ export const UpdateImageCourse = ({ courseId }: UpdateImageCourseProps) => {
 	}
 
 	return (
-		<Button size='icon' variant='outline'>
-			<Input
-				type='file'
-				className='hidden'
-				id={`image-update-${courseId}`}
-				accept='image/*'
-				onInput={handleUpdateImageCourse}
-			/>
-			<Label htmlFor={`image-update-${courseId}`}>
-				<ImageIcon />
-			</Label>
-		</Button>
+		<TooltipProvider delayDuration={0}>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button size='icon' variant='outline'>
+						<Input
+							type='file'
+							className='hidden'
+							id={`image-update-${courseId}`}
+							accept='image/*'
+							onInput={handleUpdateImageCourse}
+						/>
+						<Label htmlFor={`image-update-${courseId}`}>
+							<ImageIcon />
+						</Label>
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>Изменить картинку</TooltipContent>
+			</Tooltip>
+		</TooltipProvider>
 	)
 }
