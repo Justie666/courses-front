@@ -21,12 +21,8 @@ export const RequestBackCallService = {
 			.then(res => res.data),
 
 	create: async ({ params, config }: CreateRequestBackCallConfig) =>
-		apiWithAuth.post<RequestBackCall>(`${PREFIX}`, params, config),
+		apiWithAuth.post<string>(`${PREFIX}`, params, config),
 
 	update: async ({ params, config }: UpdateRequestBackCallConfig) =>
-		apiWithAuth.patch<RequestBackCall>(
-			`${PREFIX}/${params?.id}`,
-			params,
-			config
-		)
+		apiWithAuth.patch<string>(`${PREFIX}/${params?.id}`, params, config)
 }

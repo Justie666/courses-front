@@ -2,22 +2,22 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import {
-	CreateRequestBackCallConfig,
-	RequestBackCallService
+	RequestBackCallService,
+	UpdateRequestBackCallConfig
 } from '../../services'
 
-export const useCreateRequestBackCallMutation = (
+export const useUpdateRequestBackCallMutation = (
 	settings?: MutationSettings<
-		CreateRequestBackCallConfig,
-		typeof RequestBackCallService.create
+		UpdateRequestBackCallConfig,
+		typeof RequestBackCallService.update
 	>
 ) => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['create-request'],
+		mutationKey: ['create-requestBackCall'],
 		mutationFn: ({ params, config }) =>
-			RequestBackCallService.create({
+			RequestBackCallService.update({
 				params: params,
 				config: { ...settings?.config, ...config }
 			}),

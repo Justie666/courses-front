@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { MainLayout } from '@/layouts'
 import {
+	AdminCoursesPage,
 	AdminInternshipPage,
-	AdminPage,
 	AdminRequestsPage,
 	HomePage,
 	InternshipPage,
@@ -12,7 +12,7 @@ import {
 } from '@/pages'
 import CoursesPage from '@/pages/courses/page'
 import CoursesWatchSlugPage from '@/pages/courses/watch/[slug]/page'
-import { SignInPage } from '@/pages/sign-in-page'
+import { SignInPage } from '@/pages/sign-in'
 import { ROUTES } from '@/shared/constants'
 
 export const router = createBrowserRouter([
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
 			{ path: ROUTES['sign-in'], element: <SignInPage /> },
 			{ path: ROUTES.courses, element: <CoursesPage /> },
 			{ path: ROUTES.internship, element: <InternshipPage /> },
-			{ path: ROUTES.admin, element: <AdminPage /> },
+			{ path: ROUTES.admin, element: <AdminCoursesPage /> },
 			{ path: ROUTES['admin-requests'], element: <AdminRequestsPage /> },
 			{ path: ROUTES['admin-internship'], element: <AdminInternshipPage /> },
 			{ path: ROUTES.profile, element: <ProfilePage /> },

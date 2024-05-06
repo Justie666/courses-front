@@ -8,7 +8,7 @@ import {
 	DialogCreateCourse
 } from './components'
 
-export const AdminPage = () => {
+export const AdminCoursesPage = () => {
 	const { data: courses, isPending: isCoursesPending } = useGetAllCourseQuery()
 
 	return (

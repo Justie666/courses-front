@@ -12,5 +12,19 @@ export const STATUSES: Record<string, ValueOption[]> = {
 			value: 'READY',
 			label: 'Завершён'
 		}
+	],
+	'request-back-call': [
+		{
+			value: 'PENDING',
+			label: 'В ожидании'
+		},
+		{
+			value: 'ACCEPT',
+			label: 'Завершён'
+		},
+		{
+			value: 'REJECT',
+			label: 'Отклонен'
+		}
 	]
 }

@@ -121,6 +121,7 @@ export const FormBackCall = () => {
 								)}
 							/>
 							<ButtonSubmit
+								onClick={form.handleSubmit(onSubmit)}
 								isPending={isPendingCreateRequestBackCall}
 								label='Отправить'
 							/>

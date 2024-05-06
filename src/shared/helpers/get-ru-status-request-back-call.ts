@@ -3,7 +3,7 @@ export const getRuStatusRequestBackCall = (status: StatusRequestBackCall) => {
 		case 'PENDING':
 			return 'В ожидании'
 		case 'ACCEPT':
-			return 'Принят'
+			return 'Завершён'
 		case 'REJECT':
 			return 'Отклонен'
 		default:

@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { ButtonSubmit } from '@/components'
-import { useCreateRequestBackCallMutation } from '@/shared/api'
+import {
+	useCreateRequestBackCallMutation,
+	useGetAllDirectionsQuery
+} from '@/shared/api'
 import {
 	Form,
 	FormControl,
@@ -45,12 +48,15 @@ export const FormRequestInternship = () => {
 		}
 	})
 
+	const { data: directions } = useGetAllDirectionsQuery()
+
 	const {
 		mutate: createRequestBackCall,
 		isPending: isPendingCreateRequestBackCall
 	} = useCreateRequestBackCallMutation()
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+		console.log(values)
 		createRequestBackCall({ params: values })
 		form.reset()
 	}
@@ -117,7 +123,11 @@ export const FormRequestInternship = () => {
 									<SelectContent>
 										<SelectGroup>
 											<SelectLabel>Направление</SelectLabel>
-											<SelectItem value='front'>FrontEnd (React)</SelectItem>
+											{directions?.map(direction => (
+												<SelectItem key={direction.id} value={direction.id}>
+													{direction.title}
+												</SelectItem>
+											))}
 										</SelectGroup>
 									</SelectContent>
 								</Select>
