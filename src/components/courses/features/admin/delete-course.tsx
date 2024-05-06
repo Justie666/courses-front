@@ -1,13 +1,5 @@
-import { Trash2 } from 'lucide-react'
-
+import { ButtonDeleteWithConfirmation } from '@/components/buttons/button-delete-with-confirmation'
 import { useDeleteCourseMutation } from '@/shared/api'
-import {
-	Button,
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger
-} from '@/shared/ui'
 
 interface DeleteCourseProps {
 	courseId: string
@@ -21,19 +13,9 @@ export const DeleteCourse = ({ courseId }: DeleteCourseProps) => {
 		deleteCourse({ params: { id: courseId } })
 	}
 	return (
-		<TooltipProvider delayDuration={0}>
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Button
-						onClick={handleDeleteCourse}
-						size='icon'
-						variant='outline'
-						disabled={isPendingDeleteCourse}>
-						<Trash2 />
-					</Button>
-				</TooltipTrigger>
-				<TooltipContent>Удалить курс</TooltipContent>
-			</Tooltip>
-		</TooltipProvider>
+		<ButtonDeleteWithConfirmation
+			isPending={isPendingDeleteCourse}
+			handleAction={handleDeleteCourse}
+		/>
 	)
 }

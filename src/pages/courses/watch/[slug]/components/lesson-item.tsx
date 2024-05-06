@@ -1,10 +1,11 @@
 import { CheckCheck, CirclePlay } from 'lucide-react'
 import { HTMLAttributes } from 'react'
 
+import { ButtonDeleteWithConfirmation } from '@/components'
+import { useDeleteLessonMutation } from '@/shared/api'
 import { useIsWatchedLesson } from '@/shared/hooks'
 import { Button } from '@/shared/ui'
 
-import { DeleteLesson } from './delete-lesson'
 import { DialogUpdateLesson } from './dialog-update-lesson'
 import { UpdateVideoLesson } from './update-video-lesson'
 
@@ -15,6 +16,13 @@ interface LessonItemProps extends HTMLAttributes<HTMLButtonElement> {
 
 export const LessonItem = ({ isActive, lesson, ...rest }: LessonItemProps) => {
 	const isWatchedLesson = useIsWatchedLesson(lesson.id)
+
+	const { mutate: deleteLesson, isPending: isPendingDeleteLesson } =
+		useDeleteLessonMutation()
+
+	const handleDeleteLesson = () => {
+		deleteLesson({ params: { id: lesson.id } })
+	}
 
 	return (
 		<Button
@@ -29,7 +37,10 @@ export const LessonItem = ({ isActive, lesson, ...rest }: LessonItemProps) => {
 			<div className='ml-auto flex gap-1'>
 				<UpdateVideoLesson lessonId={lesson.id} />
 				<DialogUpdateLesson lesson={lesson} />
-				<DeleteLesson lessonId={lesson.id} />
+				<ButtonDeleteWithConfirmation
+					isPending={isPendingDeleteLesson}
+					handleAction={handleDeleteLesson}
+				/>
 			</div>
 		</Button>
 	)

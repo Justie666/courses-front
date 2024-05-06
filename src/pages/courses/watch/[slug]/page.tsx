@@ -31,7 +31,6 @@ const CoursesWatchSlugPage = () => {
 
 	const percentageWatched =
 		watchedLessons && totalLessons && (watchedLessons / totalLessons) * 100
-	console.log(percentageWatched)
 
 	return (
 		<div>

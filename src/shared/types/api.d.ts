@@ -11,6 +11,7 @@ interface User {
 	userFavoriteCourse?: UserFavoriteCourse[]
 	userPurchasedCourse?: UserPurchasedCourse[]
 	userWatchedLesson?: UserWatchedLesson[]
+	requestInternship: RequestInternship[]
 }
 
 interface UserFavoriteCourse {
@@ -111,4 +112,24 @@ interface Direction {
 	createdAt: string
 	updatedAt: string
 	title: string
+}
+
+type StatusRequestInternship = 'PENDING' | 'ACCEPT' | 'REJECT'
+
+interface RequestInternship {
+	id: string
+	createdAt: string
+	updatedAt: string
+
+	status: StatusRequestInternship
+
+	name: string
+	email: string
+	phone: string
+	skills: string
+	aboutMe: string
+	projects: string
+	direction: string
+
+	userId: string
 }

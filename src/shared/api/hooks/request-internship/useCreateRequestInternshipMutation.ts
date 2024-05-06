@@ -2,28 +2,28 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import {
-	CreateRequestBackCallConfig,
-	RequestBackCallService
+	CreateRequestInternshipConfig,
+	RequestInternshipService
 } from '../../services'
 
-export const useCreateRequestBackCallMutation = (
+export const useCreateRequestInternshipMutation = (
 	settings?: MutationSettings<
-		CreateRequestBackCallConfig,
-		typeof RequestBackCallService.create
+		CreateRequestInternshipConfig,
+		typeof RequestInternshipService.create
 	>
 ) => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['create-request-back-call'],
+		mutationKey: ['create-request-internship'],
 		mutationFn: ({ params, config }) =>
-			RequestBackCallService.create({
+			RequestInternshipService.create({
 				params: params,
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
 		onSuccess: response => {
-			queryClient.invalidateQueries({ queryKey: ['requestBackCalls'] })
+			queryClient.invalidateQueries({ queryKey: ['requestInternships'] })
 			toast(response.data)
 		},
 		onError(error) {

@@ -1,4 +1,5 @@
 export * from './accordion.tsx'
+export * from './alert-dialog.tsx'
 export * from './avatar.tsx'
 export * from './badge.tsx'
 export * from './button.tsx'

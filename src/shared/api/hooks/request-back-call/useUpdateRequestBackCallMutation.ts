@@ -15,7 +15,7 @@ export const useUpdateRequestBackCallMutation = (
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['create-requestBackCall'],
+		mutationKey: ['update-request-back-call'],
 		mutationFn: ({ params, config }) =>
 			RequestBackCallService.update({
 				params: params,

@@ -1,5 +1,5 @@
 export * from './auth'
-export * from './button-submit.tsx'
+export * from './buttons'
 export * from './courses'
 export * from './faq.tsx'
 export * from './menu-burger.tsx'

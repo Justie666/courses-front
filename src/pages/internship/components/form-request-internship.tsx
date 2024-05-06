@@ -3,10 +3,8 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { ButtonSubmit } from '@/components'
-import {
-	useCreateRequestBackCallMutation,
-	useGetAllDirectionsQuery
-} from '@/shared/api'
+import { useGetAllDirectionsQuery } from '@/shared/api'
+import { useCreateRequestInternshipMutation } from '@/shared/api/hooks/request-internship'
 import {
 	Form,
 	FormControl,
@@ -53,10 +51,9 @@ export const FormRequestInternship = () => {
 	const {
 		mutate: createRequestBackCall,
 		isPending: isPendingCreateRequestBackCall
-	} = useCreateRequestBackCallMutation()
+	} = useCreateRequestInternshipMutation()
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		console.log(values)
 		createRequestBackCall({ params: values })
 		form.reset()
 	}

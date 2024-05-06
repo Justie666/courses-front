@@ -1,13 +1,5 @@
-import { Trash2 } from 'lucide-react'
-
+import { ButtonDeleteWithConfirmation } from '@/components'
 import { useDeleteCategoryMutation } from '@/shared/api'
-import {
-	Button,
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger
-} from '@/shared/ui'
 
 interface DeleteCategoryProps {
 	categoryId: string
@@ -21,19 +13,9 @@ export const DeleteCategory = ({ categoryId }: DeleteCategoryProps) => {
 		deleteCategory({ params: { id: categoryId } })
 	}
 	return (
-		<TooltipProvider delayDuration={0}>
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Button
-						onClick={handleDeleteCategory}
-						size='icon'
-						variant='outline'
-						disabled={isPendingDeleteCategory}>
-						<Trash2 size={18} />
-					</Button>
-				</TooltipTrigger>
-				<TooltipContent>Удалить категорию</TooltipContent>
-			</Tooltip>
-		</TooltipProvider>
+		<ButtonDeleteWithConfirmation
+			isPending={isPendingDeleteCategory}
+			handleAction={handleDeleteCategory}
+		/>
 	)
 }

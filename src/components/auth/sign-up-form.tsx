@@ -14,7 +14,7 @@ import {
 	Input
 } from '@/shared/ui'
 
-import { ButtonSubmit } from '../button-submit'
+import { ButtonSubmit } from '../buttons/button-submit'
 
 const formSchema = z.object({
 	name: z.string().min(RULES.name.minLength, {
