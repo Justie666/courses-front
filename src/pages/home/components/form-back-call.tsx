@@ -27,6 +27,9 @@ const formSchema = z.object({
 	phone: z.string().regex(/^(\+7|7|8)\d{3}\d{3}\d{2}\d{2}$/, {
 		message: RULES.backCall.phone.regex.message
 	}),
+	name: z.string().min(RULES.backCall.name.min.value, {
+		message: RULES.backCall.name.min.message
+	}),
 	problem: z.string().min(RULES.backCall.problem.min.value, {
 		message: RULES.backCall.problem.min.message
 	})
@@ -37,6 +40,7 @@ export const FormBackCall = () => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			phone: '',
+			name: '',
 			problem: ''
 		}
 	})
@@ -85,6 +89,23 @@ export const FormBackCall = () => {
 							<DialogTitle>Заявка на обратный звонок</DialogTitle>
 						</DialogHeader>
 						<div className='flex flex-col gap-2'>
+							<FormField
+								control={form.control}
+								name='name'
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Ваше имя</FormLabel>
+										<FormControl>
+											<Input
+												placeholder='Имя'
+												className='bg-muted/50 dark:bg-muted/80'
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
 							<FormField
 								control={form.control}
 								name='phone'

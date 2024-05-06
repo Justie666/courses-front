@@ -17,8 +17,8 @@ export const RULES = {
 	course: {
 		title: {
 			min: {
-				value: 5,
-				message: 'Название курса должно содержать минимум 5 символов'
+				value: 3,
+				message: 'Название курса должно содержать минимум 3 символа'
 			}
 		},
 		categoryIds: {
@@ -54,6 +54,12 @@ export const RULES = {
 			min: {
 				value: 10,
 				message: 'Описание проблемы должно содержать минимум 10 символов'
+			}
+		},
+		name: {
+			min: {
+				value: 2,
+				message: 'Имя должно содержать больше 2 символов'
 			}
 		}
 	},

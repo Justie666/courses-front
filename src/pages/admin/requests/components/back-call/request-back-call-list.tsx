@@ -13,7 +13,7 @@ export const RequestBackCallList = () => {
 			<Table>
 				<TableHeader>
 					<TableRow>
-						<TableHead className='w-[100px]'>Номер</TableHead>
+						<TableHead className='w-[100px]'>Имя и номер</TableHead>
 						<TableHead>Статус</TableHead>
 						<TableHead>Проблема</TableHead>
 						<TableHead>Комментарий</TableHead>

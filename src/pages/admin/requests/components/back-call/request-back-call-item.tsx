@@ -10,7 +10,10 @@ interface RequestBackCallItemProps {
 export const RequestBackCallItem = ({ request }: RequestBackCallItemProps) => {
 	return (
 		<TableRow key={request.id}>
-			<TableCell className='font-medium'>{request.phone}</TableCell>
+			<TableCell className='font-medium'>
+				{request.name} <br />
+				{request.phone}
+			</TableCell>
 			<TableCell>{getRuStatusRequestBackCall(request.status)}</TableCell>
 			<TableCell>{request.problem}</TableCell>
 			<TableCell>{request.comment || 'Нет'}</TableCell>

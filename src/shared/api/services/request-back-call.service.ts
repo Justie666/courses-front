@@ -1,4 +1,4 @@
-import { apiWithAuth } from '../instances'
+import { api, apiWithAuth } from '../instances'
 
 const PREFIX = '/request-back-call'
 
@@ -6,6 +6,8 @@ export type GetAllRequestBackCallConfig = RequestConfig
 
 export type CreateRequestBackCallConfig = RequestConfig<{
 	phone: string
+	problem: string
+	name: string
 }>
 
 export type UpdateRequestBackCallConfig = RequestConfig<{
@@ -21,7 +23,7 @@ export const RequestBackCallService = {
 			.then(res => res.data),
 
 	create: async ({ params, config }: CreateRequestBackCallConfig) =>
-		apiWithAuth.post<string>(`${PREFIX}`, params, config),
+		api.post<string>(`${PREFIX}`, params, config),
 
 	update: async ({ params, config }: UpdateRequestBackCallConfig) =>
 		apiWithAuth.patch<string>(`${PREFIX}/${params?.id}`, params, config)

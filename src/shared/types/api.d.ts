@@ -93,8 +93,7 @@ interface RequestBackCall {
 	comment: string
 	problem: string
 	phone: string
-	userId: string
-	user: User
+	name: string
 }
 
 type StatusProject = 'IN_PROGRESS' | 'CANCELLED' | 'READY'

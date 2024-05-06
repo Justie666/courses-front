@@ -56,19 +56,6 @@ export const FormUpdateRequestBackCall = ({
 				className='flex flex-col gap-2'>
 				<FormField
 					control={form.control}
-					name='comment'
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Комментарий</FormLabel>
-							<FormControl>
-								<Textarea placeholder='Название' {...field}></Textarea>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
 					name='status'
 					render={({ field }) => (
 						<FormItem>
@@ -88,6 +75,19 @@ export const FormUpdateRequestBackCall = ({
 									</SelectGroup>
 								</SelectContent>
 							</Select>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name='comment'
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Комментарий</FormLabel>
+							<FormControl>
+								<Textarea placeholder='Название' {...field}></Textarea>
+							</FormControl>
 							<FormMessage />
 						</FormItem>
 					)}

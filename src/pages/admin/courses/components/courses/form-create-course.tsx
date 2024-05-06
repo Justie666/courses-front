@@ -31,7 +31,7 @@ export const FormCreateCourse = () => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			title: '321321321',
+			title: '',
 			categoryIds: [],
 			price: 0
 		}
