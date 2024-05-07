@@ -4,7 +4,8 @@ import { z } from 'zod'
 
 import { ButtonSubmit } from '@/components'
 import { useUpdateRequestBackCallMutation } from '@/shared/api'
-import { STATUSES } from '@/shared/constants/statuses'
+import { STATUSES_REQUEST } from '@/shared/constants'
+import { getRuStatusRequest } from '@/shared/helpers'
 import {
 	Form,
 	FormControl,
@@ -67,9 +68,9 @@ export const FormUpdateRequestBackCall = ({
 								<SelectContent>
 									<SelectGroup>
 										<SelectLabel>Направление</SelectLabel>
-										{STATUSES['request-back-call'].map(status => (
-											<SelectItem key={status.value} value={status.value}>
-												{status.label}
+										{STATUSES_REQUEST.map(status => (
+											<SelectItem key={status} value={status}>
+												{getRuStatusRequest(status)}
 											</SelectItem>
 										))}
 									</SelectGroup>

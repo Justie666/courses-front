@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui'
 
-import { RequestBackCallList } from './components'
+import { RequestsBackCallList } from './components'
+import { RequestsInternshipList } from './components'
 
 export const AdminRequestsPage = () => {
 	return (
@@ -9,14 +10,16 @@ export const AdminRequestsPage = () => {
 				<TabsTrigger className='w-full' value='backCalls'>
 					Обратные звонки
 				</TabsTrigger>
-				<TabsTrigger className='w-full' value='d'>
+				<TabsTrigger className='w-full' value='internships'>
 					Стажировка
 				</TabsTrigger>
 			</TabsList>
 			<TabsContent value='backCalls'>
-				<RequestBackCallList />
+				<RequestsBackCallList />
 			</TabsContent>
-			<TabsContent value='d'></TabsContent>
+			<TabsContent value='internships'>
+				<RequestsInternshipList />
+			</TabsContent>
 		</Tabs>
 	)
 }

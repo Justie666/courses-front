@@ -1,4 +1,4 @@
-import { getRuStatusRequestBackCall } from '@/shared/helpers'
+import { getRuStatusRequest } from '@/shared/helpers'
 import { TableCell, TableRow } from '@/shared/ui'
 
 import { DialogUpdateRequestBackCall } from './update'
@@ -14,7 +14,7 @@ export const RequestBackCallItem = ({ request }: RequestBackCallItemProps) => {
 				{request.name} <br />
 				{request.phone}
 			</TableCell>
-			<TableCell>{getRuStatusRequestBackCall(request.status)}</TableCell>
+			<TableCell>{getRuStatusRequest(request.status)}</TableCell>
 			<TableCell>{request.problem}</TableCell>
 			<TableCell>{request.comment || 'Нет'}</TableCell>
 			<TableCell className='text-right'>

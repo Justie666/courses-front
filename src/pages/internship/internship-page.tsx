@@ -1,7 +1,7 @@
 import { FAQ } from '@/components/faq'
 import { FAQ_LISTS } from '@/shared/constants/faq-lists'
 
-import { FormRequestInternship } from './components'
+import { RequestInternship } from './components'
 
 export const InternshipPage = () => {
 	return (
@@ -62,7 +62,7 @@ export const InternshipPage = () => {
 				</div>
 			</div>
 			<FAQ FAQList={FAQ_LISTS.internshipPage} withNumbers />
-			<FormRequestInternship />
+			<RequestInternship />
 		</>
 	)
 }

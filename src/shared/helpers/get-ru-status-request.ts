@@ -1,4 +1,4 @@
-export const getRuStatusRequestBackCall = (status: StatusRequestBackCall) => {
+export const getRuStatusRequest = (status: StatusRequest) => {
 	switch (status) {
 		case 'PENDING':
 			return 'В ожидании'

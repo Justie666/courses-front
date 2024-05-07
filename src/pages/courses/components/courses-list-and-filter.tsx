@@ -20,6 +20,7 @@ export const CoursesListAndFilter = () => {
 		}
 		return course.categories?.some(category => category.id === selectedCategory) // Filter by category
 	})
+
 	return (
 		<>
 			<div className='mt-10 flex flex-wrap gap-2'>

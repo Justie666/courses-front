@@ -117,6 +117,8 @@ interface Direction {
 
 type StatusRequestInternship = 'PENDING' | 'ACCEPT' | 'REJECT'
 
+type StatusRequest = 'PENDING' | 'ACCEPT' | 'REJECT'
+
 interface RequestInternship {
 	id: string
 	createdAt: string
@@ -124,13 +126,12 @@ interface RequestInternship {
 
 	status: StatusRequestInternship
 
-	name: string
-	email: string
 	phone: string
 	skills: string
 	aboutMe: string
 	projects: string
 	direction: string
+	User: User
 
 	userProject: UserProject[]
 

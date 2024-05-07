@@ -1,1 +1,1 @@
-export * from './form-request-internship.tsx'
+export * from './request-internship'
