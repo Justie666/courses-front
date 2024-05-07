@@ -53,7 +53,6 @@ export const FormBackCall = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		createRequestBackCall({ params: values })
-		form.reset()
 	}
 
 	useResetFormOnSuccess(form, isSuccessCreateRequestBackCall)

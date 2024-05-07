@@ -12,6 +12,7 @@ interface User {
 	userPurchasedCourse?: UserPurchasedCourse[]
 	userWatchedLesson?: UserWatchedLesson[]
 	requestInternship: RequestInternship[]
+	userProject: UserProject[]
 }
 
 interface UserFavoriteCourse {
@@ -131,5 +132,17 @@ interface RequestInternship {
 	projects: string
 	direction: string
 
+	userProject: UserProject[]
+
 	userId: string
+}
+
+interface UserProject {
+	id: string
+	createdAt: string
+	updatedAt: string
+
+	userId: string
+	projectId: string
+	requestInternshipId: string
 }

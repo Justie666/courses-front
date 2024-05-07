@@ -1,4 +1,5 @@
 export const RULES = {
+	required: 'Обязательное поле',
 	password: {
 		minLength: 8,
 		minLengthError: 'Пароль должен содержать больше 8 символов'
@@ -60,6 +61,29 @@ export const RULES = {
 			min: {
 				value: 2,
 				message: 'Имя должно содержать больше 2 символов'
+			}
+		}
+	},
+	requestInternship: {
+		phone: {
+			regex: {
+				rule: '',
+				message: 'Неверный формат телефона'
+			}
+		},
+		direction: {
+			string: {
+				message: 'Это поле является обязательным'
+			}
+		},
+		projects: {
+			string: {
+				message: 'Это поле является обязательным'
+			}
+		},
+		aboutMe: {
+			string: {
+				message: 'Это поле является обязательным'
 			}
 		}
 	},

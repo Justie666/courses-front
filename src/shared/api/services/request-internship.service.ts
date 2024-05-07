@@ -1,19 +1,22 @@
 import { apiWithAuth } from '../instances'
 
-const PREFIX = '/request-back-call'
+const PREFIX = '/request-internship'
 
 export type GetAllRequestInternshipConfig = RequestConfig
 
-export type CreateRequestInternshipConfig = RequestConfig<
-	Omit<
-		RequestInternship,
-		'id' | 'createdAt' | 'updatedAt' | 'status' | 'userId'
-	>
->
+export type CreateRequestInternshipConfig = RequestConfig<{
+	phone: string
+	skills: string
+	aboutMe: string
+	projects: string
+	direction: string
+}>
 
-export type UpdateRequestInternshipConfig = RequestConfig<
-	Pick<RequestInternship, 'id' | 'status'>
->
+export type UpdateRequestInternshipConfig = RequestConfig<{
+	id: string
+	status: StatusRequestInternship
+	projectId?: string
+}>
 
 export const RequestInternshipService = {
 	getAll: async ({ config }: GetAllRequestInternshipConfig) =>
