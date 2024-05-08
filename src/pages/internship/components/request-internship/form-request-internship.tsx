@@ -38,7 +38,7 @@ const formSchema = z.object({
 	projects: z.string().min(1, {
 		message: RULES.required
 	}),
-	direction: z.string().min(1, {
+	directionId: z.string().min(1, {
 		message: RULES.required
 	})
 })
@@ -51,7 +51,7 @@ export const FormRequestInternship = () => {
 			aboutMe:
 				'Меня зовут Никита, я заканчиваю 4 курс. Занимаюсь FrontEnd разработкой уже около 3 лет. Начал изучение с html css в колледже и потом продолжил изучением React дома.',
 			projects: 'google.com, yandex.ru',
-			direction: ''
+			directionId: ''
 		}
 	})
 
@@ -89,7 +89,7 @@ export const FormRequestInternship = () => {
 				/>
 				<FormField
 					control={form.control}
-					name='direction'
+					name='directionId'
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Направление</FormLabel>

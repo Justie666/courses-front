@@ -9,12 +9,12 @@ export type CreateRequestInternshipConfig = RequestConfig<{
 	skills: string
 	aboutMe: string
 	projects: string
-	direction: string
+	directionId: string
 }>
 
 export type UpdateRequestInternshipConfig = RequestConfig<{
 	id: string
-	status: StatusRequestInternship
+	status: StatusRequest
 	projectId?: string
 }>
 
