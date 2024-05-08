@@ -1,4 +1,4 @@
-export const STATUSES: Record<string, string[] | ValueOption[]> = {
+export const STATUSES: Record<string, ValueOption[]> = {
 	project: [
 		{
 			value: 'IN_PROGRESS',
@@ -12,8 +12,8 @@ export const STATUSES: Record<string, string[] | ValueOption[]> = {
 			value: 'READY',
 			label: 'Завершён'
 		}
-	],
-	'request-back-call': ['PENDING', 'ACCEPT', 'REJECT']
+	]
+	// 'request-back-call': ['PENDING', 'ACCEPT', 'REJECT']
 }
 
 export const STATUSES_REQUEST: StatusRequest[] = ['PENDING', 'ACCEPT', 'REJECT']

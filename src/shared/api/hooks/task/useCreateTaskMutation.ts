@@ -1,30 +1,25 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import {
-	RequestInternshipService,
-	UpdateRequestInternshipConfig
-} from '../../services'
+import { CreateTaskConfig, TaskService } from '../../services'
 
-export const useUpdateRequestInternshipMutation = (
-	settings?: MutationSettings<
-		UpdateRequestInternshipConfig,
-		typeof RequestInternshipService.update
-	>
+export const useCreateTaskMutation = (
+	settings?: MutationSettings<CreateTaskConfig, typeof TaskService.create>
 ) => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['update-request-internship'],
+		mutationKey: ['create-task'],
 		mutationFn: ({ params, config }) =>
-			RequestInternshipService.update({
+			TaskService.create({
 				params: params,
 				config: { ...settings?.config, ...config }
 			}),
 		...settings?.options,
 		onSuccess: response => {
-			queryClient.invalidateQueries({ queryKey: ['requestInternships'] })
-			queryClient.invalidateQueries({ queryKey: ['user'] })
+			queryClient.invalidateQueries({
+				queryKey: ['project', settings?.config?.params.projectId]
+			})
 			toast(response.data)
 		},
 		onError(error) {

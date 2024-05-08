@@ -106,6 +106,8 @@ interface Project {
 	updatedAt: string
 	title: string
 	status: StatusProject
+	userProject: UserProject[]
+	Task: Task[]
 }
 
 interface Direction {
@@ -137,7 +139,7 @@ interface RequestInternship {
 	directionId: string
 	userProject?: { Project: { title: string } }[]
 
-	userProject: UserProject[]
+	userProject?: UserProject[]
 
 	userId: string
 }
@@ -148,8 +150,32 @@ interface UserProject {
 	updatedAt: string
 
 	userId: string
-	projectId: string
+	User: User
+	projectId?: string
+	Project?: Project
 	requestInternshipId: string
-	direction: Direction
+	Direction: Direction
 	directionId: string
+}
+
+type StatusTask = 'NO_STATUS' | 'IN_PROGRESS' | 'TESTING' | 'DONE' | 'ARCHIVE'
+type Priority = 'NO' | 'LOW' | 'MEDIUM' | 'HIGH'
+
+interface Task {
+	id: string
+	createdAt: string
+	updatedAt: string
+
+	title: string
+	status: StatusTask
+	content: string
+	deadline?: Date
+	priority: Priority
+
+	Project: Project
+	projectId: string
+	directionId: string
+	Direction: Direction
+	User: User
+	userId: string
 }

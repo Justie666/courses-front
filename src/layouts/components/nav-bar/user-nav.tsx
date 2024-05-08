@@ -43,7 +43,7 @@ export const UserNav = () => {
 					<Link to={ROUTES['user-courses']}>Мои курсы</Link>
 				</DropdownMenuItem>
 				<DropdownMenuItem>
-					<Link to={ROUTES['user-applications']}>Мои заявки</Link>
+					<Link to={ROUTES['user-internship']}>Стажировка</Link>
 				</DropdownMenuItem>
 
 				<ForAdmin>

@@ -1,5 +1,6 @@
 export * from './admin'
 export * from './home/home-page.tsx'
 export * from './internship/internship-page.tsx'
+export * from './project'
 export * from './sign-in'
 export * from './user'

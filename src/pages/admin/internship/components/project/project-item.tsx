@@ -1,3 +1,4 @@
+import { UsersProjectList } from '@/components'
 import { getRuStatusProject } from '@/shared/helpers'
 
 import { DeleteProject } from './delete'
@@ -19,6 +20,11 @@ export const ProjectItem = ({ project }: ProjectItemProps) => {
 			</div>
 			<p>Статус: {getRuStatusProject(project.status)}</p>
 			<div>Список участников:</div>
+			<div className='mt-4'>
+				{project.userProject && (
+					<UsersProjectList users={project.userProject} />
+				)}
+			</div>
 		</div>
 	)
 }

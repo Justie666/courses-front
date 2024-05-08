@@ -3,6 +3,9 @@ import { api, apiWithAuth } from '../instances'
 const PREFIX = '/project'
 
 export type GetAllConfigProjects = RequestConfig
+export type GetByIdConfigProjects = RequestConfig<{
+	id: string
+}>
 export type ProjectCreateConfig = RequestConfig<{ title: string }>
 export type ProjectUpdateConfig = RequestConfig<{
 	id: string
@@ -14,6 +17,9 @@ export type ProjectDeleteConfig = RequestConfig<{ id: string }>
 export const ProjectService = {
 	getAll: async ({ config }: GetAllConfigProjects) =>
 		api.get<Project[]>(`${PREFIX}`, config).then(res => res.data),
+
+	getById: async ({ config }: GetByIdConfigProjects) =>
+		api.get<Project>(`${PREFIX}/one`, config).then(res => res.data),
 
 	create: async ({ params, config }: ProjectCreateConfig) =>
 		apiWithAuth.post<string>(`${PREFIX}`, params, config),

@@ -19,7 +19,7 @@ export const RequestInternshipItem = ({
 		updateRequest({ params: { id: request.id, status } })
 	}
 
-	const projectName = request?.userProject?.[0].Project?.title
+	const projectName = request?.userProject?.[0]?.Project?.title
 
 	return (
 		<div className='text-md rounded-2xl border px-3 py-4 bg-muted/50'>

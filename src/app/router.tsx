@@ -8,7 +8,9 @@ import {
 	HomePage,
 	InternshipPage,
 	ProfilePage,
-	UserCoursesPage
+	ProjectPage,
+	UserCoursesPage,
+	UserInternshipPage
 } from '@/pages'
 import CoursesPage from '@/pages/courses/page'
 import CoursesWatchSlugPage from '@/pages/courses/watch/[slug]/page'
@@ -35,7 +37,9 @@ export const router = createBrowserRouter([
 				path: `${ROUTES['courses-watch']}/:slug`,
 				element: <CoursesWatchSlugPage />
 			},
-			{ path: ROUTES['user-courses'], element: <UserCoursesPage /> }
+			{ path: ROUTES['user-courses'], element: <UserCoursesPage /> },
+			{ path: ROUTES['user-internship'], element: <UserInternshipPage /> },
+			{ path: `${ROUTES.project}/:projectId`, element: <ProjectPage /> }
 		]
 	}
 ])
