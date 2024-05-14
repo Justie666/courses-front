@@ -25,20 +25,17 @@ export const TasksLine = ({
 }: TasksLineProps) => {
 	const statusForCreate = statusMapping[status]
 
-	const filterTasks = tasks?.filter(task => {
-		console.log('Статус столбца ' + status)
-		console.log('Статус такси ' + task.status)
-		console.log('Статус таксивввв ' + statusForCreate)
-
-		return task.status === statusForCreate
-	})
+	const filterTasks = tasks?.filter(task => task.status === statusForCreate)
 
 	return (
 		<div className='rounded-xl p-3 border bg-muted/50'>
 			<div className='font-bold text-xl'>{status}</div>
+			Всего задач: {filterTasks?.length}
 			<hr className='my-3' />
 			<div className='flex flex-col gap-2'>
-				{filterTasks?.map(task => <TaskItem key={task.id} task={task} />)}
+				{filterTasks?.map(task => (
+					<TaskItem key={task.id} task={task} users={users} />
+				))}
 				<DialogCreateTask
 					status={statusForCreate}
 					directionId={directionId}

@@ -1,26 +1,24 @@
-import { Clock10 } from 'lucide-react'
+import { Dialog, DialogContent, DialogTrigger } from '@/shared/ui'
 
-import { AvatarUser } from '@/components'
+import { DialogContentTask } from './dialog-content-task'
+import { TaskInfo } from './task-info'
 
 interface TaskItemProps {
 	task: Task
+	users: User[]
 }
 
-export const TaskItem = ({ task }: TaskItemProps) => {
+export const TaskItem = ({ task, users }: TaskItemProps) => {
 	return (
-		<div className='flex flex-col gap-2'>
-			<div className='rounded-xl p-3 border bg-muted/50'>
-				<div className='text-sm'>{task.Direction.title}</div>
-				<div className='text-medium'>{task.title}</div>
-				<div className='mt-3 flex gap-1 items-center'>
-					<Clock10 className='size-4' />
-					01 июн
+		<Dialog>
+			<DialogTrigger asChild>
+				<div className='cursor-pointer'>
+					<TaskInfo task={task} />
 				</div>
-				<div className='flex gap-2 items-center'>
-					<AvatarUser user={task.User} className='size-3' />
-					<span>{task.User.name}</span>
-				</div>
-			</div>
-		</div>
+			</DialogTrigger>
+			<DialogContent>
+				<DialogContentTask task={task} users={users} />
+			</DialogContent>
+		</Dialog>
 	)
 }

@@ -1,7 +1,6 @@
-import { ButtonSubmit } from '@/components'
+import { AvatarUser, ButtonSubmit } from '@/components'
 import { useUpdateRequestInternshipMutation } from '@/shared/api'
 import { getRuStatusRequest } from '@/shared/helpers'
-import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui'
 
 import { DialogAcceptRequestInternship } from './accept'
 
@@ -24,10 +23,7 @@ export const RequestInternshipItem = ({
 	return (
 		<div className='text-md rounded-2xl border px-3 py-4 bg-muted/50'>
 			<div className='flex gap-2 items-center'>
-				<Avatar className='size-10'>
-					<AvatarImage src='' />
-					<AvatarFallback>{request.User?.name.substring(0, 2)}</AvatarFallback>
-				</Avatar>
+				<AvatarUser user={request.User} />
 				<div>
 					{request.User.name} <br />
 					{request.User.email}

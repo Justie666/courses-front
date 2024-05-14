@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom'
 
 import { useUser } from '@/app/user-provider'
-import { ForAdmin } from '@/components'
+import { AvatarUser, ForAdmin } from '@/components'
 import { usePostLogoutMutation } from '@/shared/api'
 import { ROUTES } from '@/shared/constants'
 import {
-	Avatar,
-	AvatarFallback,
-	AvatarImage,
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
@@ -27,10 +24,7 @@ export const UserNav = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger>
-				<Avatar className='size-10'>
-					<AvatarImage src='' />
-					<AvatarFallback>{user?.name.substring(0, 2)}</AvatarFallback>
-				</Avatar>
+				<AvatarUser user={user} />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuLabel>

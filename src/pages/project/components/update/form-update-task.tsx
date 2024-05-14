@@ -5,10 +5,9 @@ import { CalendarIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useUser } from '@/app/user-provider'
 import { AvatarUser, ButtonSubmit } from '@/components'
-import { useCreateTaskMutation } from '@/shared/api/hooks'
-import { PRIORITIES, RULES } from '@/shared/constants'
+import { useUpdateTaskMutation } from '@/shared/api/hooks'
+import { PRIORITIES, RULES, STATUSES } from '@/shared/constants'
 import { useResetFormOnSuccess } from '@/shared/hooks'
 import { cn } from '@/shared/lib/utils'
 import {
@@ -38,46 +37,40 @@ const formSchema = z.object({
 	title: z.string().min(1, { message: RULES.required }),
 	content: z.string().min(1, { message: RULES.required }),
 	deadline: z.date().optional(),
+	status: z.enum(['NO_STATUS', 'IN_PROGRESS', 'TESTING', 'DONE', 'ARCHIVE']),
 	priority: z.enum(['NO', 'LOW', 'MEDIUM', 'HIGH']),
 	userId: z.string().min(1, { message: RULES.required })
 })
 
-interface FormCreateTaskProps {
-	status: StatusTask
-	projectId: string
-	directionId: string
+interface FormUpdateTaskProps {
+	task: Task
 	users: User[]
 }
 
-export const FormCreateTask = ({
-	status,
-	projectId,
-	directionId,
-	users
-}: FormCreateTaskProps) => {
-	const { user } = useUser()
+export const FormUpdateTask = ({ users, task }: FormUpdateTaskProps) => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			title: '123',
-			content: '123',
-			deadline: undefined,
-			priority: 'NO',
-			userId: user?.id
+			title: task.title,
+			content: task.content,
+			deadline: task.deadline ? new Date(task.deadline) : undefined,
+			status: task.status,
+			priority: task.priority,
+			userId: task.userId
 		}
 	})
 
 	const {
-		mutate: createTask,
-		isPending: isPendingCreateTask,
-		isSuccess: isSuccessCreateTask
-	} = useCreateTaskMutation()
+		mutate: updateTask,
+		isPending: isPendingUpdateTask,
+		isSuccess: isSuccessUpdateTask
+	} = useUpdateTaskMutation()
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
-		createTask({ params: { ...values, status, projectId, directionId } })
+		updateTask({ params: { id: task.id, ...values } })
 	}
 
-	useResetFormOnSuccess(form, isSuccessCreateTask)
+	useResetFormOnSuccess(form, isSuccessUpdateTask)
 
 	return (
 		<Form {...form}>
@@ -178,17 +171,42 @@ export const FormCreateTask = ({
 				/>
 				<FormField
 					control={form.control}
+					name='status'
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Статус</FormLabel>
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
+								<SelectTrigger>
+									<SelectValue placeholder='Выберите статус' />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectGroup>
+										<SelectLabel>Выберите исполнителя</SelectLabel>
+										{STATUSES.task.map(status => (
+											<SelectItem key={status.value} value={status.value}>
+												{status.label}
+											</SelectItem>
+										))}
+									</SelectGroup>
+								</SelectContent>
+							</Select>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
 					name='priority'
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Приоритет</FormLabel>
 							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<SelectTrigger>
-									<SelectValue placeholder='Выберите исполнителя' />
+									<SelectValue placeholder='Выберите приоритет' />
 								</SelectTrigger>
 								<SelectContent>
 									<SelectGroup>
-										<SelectLabel>Выберите исполнителя</SelectLabel>
+										<SelectLabel>Выберите приоритет</SelectLabel>
 										{PRIORITIES.map(priority => (
 											<SelectItem key={priority.value} value={priority.value}>
 												{priority.title}
@@ -203,8 +221,8 @@ export const FormCreateTask = ({
 				/>
 				<ButtonSubmit
 					type='submit'
-					isPending={isPendingCreateTask}
-					label='Добавить'
+					isPending={isPendingUpdateTask}
+					label='Изменить'
 				/>
 			</form>
 		</Form>
