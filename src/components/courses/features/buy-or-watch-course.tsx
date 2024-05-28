@@ -30,7 +30,7 @@ export const BuyOrWatchCourse = ({ course }: BuyOrWatchCourseProps) => {
 				</Button>
 			)}
 			{!isPurchasedCourse() && (
-				<Button onClick={handleBuyCourse} variant='outline'>
+				<Button onClick={handleBuyCourse} disabled={!user} variant='outline'>
 					Купить
 				</Button>
 			)}

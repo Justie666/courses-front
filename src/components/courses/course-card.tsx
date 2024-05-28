@@ -1,5 +1,3 @@
-import { Star } from 'lucide-react'
-
 import { env } from '@/shared/constants'
 import { declensionLesson } from '@/shared/helpers'
 import { cn } from '@/shared/lib/utils'
@@ -40,9 +38,9 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 				<Badge className='mt-3 py-1' variant='outline'>
 					{course.lessons?.length} {declensionLesson(course.lessons?.length)}
 				</Badge>
-				<p className='mt-3 flex gap-2'>
+				{/* <p className='mt-3 flex gap-2'>
 					<Star fill='yellow' strokeWidth={0} /> 5.0
-				</p>
+				</p> */}
 				<div className='mt-4 flex flex-wrap gap-2'>
 					{course.categories?.map(category => (
 						<Badge key={category.id} variant='outline'>

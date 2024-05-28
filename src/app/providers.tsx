@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { PropsWithChildren } from 'react'
 import { Toaster } from 'sonner'
 
@@ -25,7 +25,7 @@ export const Providers = ({ children }: ProvidersProps) => {
 			<ThemeProvider>
 				<UserProvider>{children}</UserProvider>
 			</ThemeProvider>
-			<ReactQueryDevtools initialIsOpen={false} />
+			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			<Toaster theme={theme} />
 		</QueryClientProvider>
 	)

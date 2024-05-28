@@ -8,7 +8,6 @@ import { z } from 'zod'
 import { AvatarUser, ButtonSubmit } from '@/components'
 import { useUpdateTaskMutation } from '@/shared/api/hooks'
 import { PRIORITIES, RULES, STATUSES } from '@/shared/constants'
-import { useResetFormOnSuccess } from '@/shared/hooks'
 import { cn } from '@/shared/lib/utils'
 import {
 	Button,
@@ -60,17 +59,12 @@ export const FormUpdateTask = ({ users, task }: FormUpdateTaskProps) => {
 		}
 	})
 
-	const {
-		mutate: updateTask,
-		isPending: isPendingUpdateTask,
-		isSuccess: isSuccessUpdateTask
-	} = useUpdateTaskMutation()
+	const { mutate: updateTask, isPending: isPendingUpdateTask } =
+		useUpdateTaskMutation()
 
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
 		updateTask({ params: { id: task.id, ...values } })
 	}
-
-	useResetFormOnSuccess(form, isSuccessUpdateTask)
 
 	return (
 		<Form {...form}>

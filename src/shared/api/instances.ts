@@ -40,7 +40,6 @@ apiWithAuth.interceptors.response.use(
 		) {
 			originalRequest._isRetry = true
 			try {
-				// TODO
 				await AuthService.accessToken({})
 				return apiWithAuth.request(originalRequest)
 			} catch (error) {
