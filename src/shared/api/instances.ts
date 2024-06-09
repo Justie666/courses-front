@@ -3,12 +3,11 @@ import axios from 'axios'
 
 import { getAccessToken, removeAccessToken } from '@/shared/services'
 
-import { env } from '../constants'
 import { errorCatch } from './error'
 import { AuthService } from './services'
 
 const options: CreateAxiosDefaults = {
-	baseURL: env.API_URL,
+	baseURL: import.meta.env.VITE_API_URL,
 	headers: {
 		'Content-Type': 'application/json'
 	},

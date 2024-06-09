@@ -1,4 +1,3 @@
-import { env } from '@/shared/constants'
 import { declensionLesson } from '@/shared/helpers'
 import { cn } from '@/shared/lib/utils'
 import {
@@ -25,7 +24,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 		<Card className='group flex flex-col overflow-hidden'>
 			<CardHeader className='relative p-0'>
 				<img
-					src={`${env.API_URL}/${course.image}`}
+					src={`${import.meta.env.VITE_API_URL}/${course.image}`}
 					alt={course.title}
 					className={cn(
 						'h-[250px] object-cover transition-all group-hover:scale-105'

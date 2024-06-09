@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { useUser } from '@/app/user-provider'
 import { Video } from '@/components'
 import { useGetBySlugCourseQuery } from '@/shared/api'
-import { env } from '@/shared/constants'
 import { Progress } from '@/shared/ui'
 
 import { LessonsList, ToggleWatchedLesson } from './components'
@@ -53,7 +52,7 @@ const CoursesWatchSlugPage = () => {
 								<div>
 									<p>{selectedLesson.title}</p>
 									<Video
-										src={`${env.API_URL}/${selectedLesson.video}`}
+										src={`${import.meta.env.VITE_API_URL}/${selectedLesson.video}`}
 										width='100%'
 										className='flex-grow'
 									/>
