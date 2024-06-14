@@ -1,9 +1,11 @@
 import { Menu } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
-import { NAV_LINKS } from '@/shared/constants'
+import { NAV_LINKS, ROUTES } from '@/shared/constants'
 import { cn } from '@/shared/lib/utils'
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/shared/ui'
+
+import { ForGuest } from './wrappers'
 
 export const MenuBurger = () => {
 	const { pathname } = useLocation()
@@ -26,6 +28,16 @@ export const MenuBurger = () => {
 							{link.label}
 						</Link>
 					))}
+					<ForGuest>
+						<Link
+							to={ROUTES['sign-in']}
+							className={cn(
+								'text-sm font-medium transition-colors hover:text-primary',
+								{ 'text-muted-foreground': pathname !== ROUTES['sign-in'] }
+							)}>
+							Авторизация
+						</Link>
+					</ForGuest>
 				</SheetHeader>
 			</SheetContent>
 		</Sheet>
