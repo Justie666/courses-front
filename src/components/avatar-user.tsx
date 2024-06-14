@@ -12,7 +12,7 @@ export const AvatarUser = ({ user, className }: AvatarUserProps) => {
 	return (
 		<Avatar className={cn('size-10', className)}>
 			<AvatarImage src='' />
-			<AvatarFallback>{user.name.substring(0, 2)}</AvatarFallback>
+			<AvatarFallback>{user.name?.substring(0, 2)}</AvatarFallback>
 		</Avatar>
 	)
 }
